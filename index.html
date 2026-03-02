@@ -1,0 +1,853 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Avant Pathfinder × ATOM – Storyboard</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    :root {
+      --avant-blue: #2563eb;
+      --avant-blue-soft: #ebf2ff;
+      --avant-teal: #0ea5e9;
+      --bg: #f5f5f7;
+      --card: #ffffff;
+      --border: #e5e7eb;
+      --text-main: #0f172a;
+      --text-muted: #6b7280;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: radial-gradient(circle at top, #ffffff, #f3f4f6);
+      color: var(--text-main);
+      min-height: 100vh;
+    }
+
+    a {
+      color: var(--avant-blue);
+      text-decoration: none;
+    }
+
+    .shell {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 18px 14px 32px;
+    }
+
+    .topline {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: var(--text-muted);
+      margin-bottom: 4px;
+    }
+
+    .story-hero {
+      background: linear-gradient(135deg, #f9fafb, #eff6ff);
+      border-radius: 18px;
+      border: 1px solid rgba(209,213,219,0.8);
+      box-shadow: 0 16px 40px rgba(15,23,42,0.06);
+      padding: 18px 18px 16px;
+      margin-bottom: 18px;
+    }
+
+    .story-title {
+      font-size: 26px;
+      font-weight: 800;
+      line-height: 1.2;
+      color: #0b1120;
+      margin-bottom: 8px;
+    }
+
+    .story-sub {
+      font-size: 13px;
+      color: var(--text-muted);
+      max-width: 640px;
+      margin-bottom: 12px;
+    }
+
+    .story-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      align-items: center;
+      font-size: 11px;
+      color: #4b5563;
+    }
+
+    .story-pill {
+      padding: 4px 9px;
+      border-radius: 999px;
+      border: 1px solid rgba(148,163,184,0.5);
+      background: #ffffff;
+    }
+
+    .story-grid {
+      margin-top: 12px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 8px;
+    }
+
+    .story-stat {
+      border-radius: 12px;
+      border: 1px solid rgba(209,213,219,0.9);
+      background: rgba(255,255,255,0.9);
+      padding: 7px 9px;
+      font-size: 10px;
+    }
+
+    .story-stat-label {
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: #6b7280;
+      font-size: 9px;
+      margin-bottom: 2px;
+    }
+
+    .story-stat-value {
+      font-weight: 700;
+      font-size: 15px;
+      color: #111827;
+    }
+
+    .story-stat-caption {
+      color: #6b7280;
+      font-size: 10px;
+    }
+
+    .chapters {
+      display: flex;
+      gap: 6px;
+      overflow-x: auto;
+      margin: 10px 0 14px;
+      padding-bottom: 4px;
+    }
+
+    .chapter-chip {
+      border-radius: 999px;
+      border: 1px solid rgba(209,213,219,0.9);
+      background: #ffffff;
+      padding: 5px 10px;
+      font-size: 11px;
+      white-space: nowrap;
+      color: #4b5563;
+      cursor: pointer;
+      transition: background 0.12s ease, color 0.12s ease, border-color 0.12s ease;
+    }
+
+    .chapter-chip.active {
+      background: var(--avant-blue-soft);
+      border-color: rgba(37,99,235,0.5);
+      color: var(--avant-blue);
+      font-weight: 600;
+    }
+
+    .section {
+      background: var(--card);
+      border-radius: 16px;
+      border: 1px solid var(--border);
+      padding: 14px 14px 12px;
+      box-shadow: 0 10px 28px rgba(15,23,42,0.05);
+      margin-bottom: 12px;
+    }
+
+    .section-header {
+      margin-bottom: 8px;
+    }
+
+    .section-kicker {
+      font-size: 11px;
+      color: var(--avant-blue);
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      margin-bottom: 2px;
+    }
+
+    .section-title {
+      font-size: 16px;
+      font-weight: 700;
+      color: #111827;
+      margin-bottom: 3px;
+    }
+
+    .section-sub {
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+
+    .two-col {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 10px;
+      margin-top: 8px;
+      font-size: 12px;
+      color: #374151;
+    }
+
+    .story-block-title {
+      font-weight: 600;
+      font-size: 12px;
+      margin-bottom: 4px;
+      color: #111827;
+    }
+
+    .step {
+      margin-bottom: 4px;
+    }
+
+    .step span {
+      color: #9ca3af;
+      margin-right: 3px;
+    }
+
+    .table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 8px;
+      font-size: 11px;
+    }
+
+    .table th,
+    .table td {
+      border: 1px solid #e5e7eb;
+      padding: 6px;
+      text-align: left;
+      vertical-align: top;
+    }
+
+    .table th {
+      background: #eff6ff;
+      color: #1d4ed8;
+      font-weight: 600;
+      font-size: 11px;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 8px;
+      margin-top: 8px;
+      font-size: 11px;
+      color: #374151;
+    }
+
+    .card-sm {
+      border-radius: 12px;
+      border: 1px solid #e5e7eb;
+      background: #f9fafb;
+      padding: 7px 9px;
+    }
+
+    .card-sm-title {
+      font-weight: 600;
+      margin-bottom: 3px;
+      font-size: 11px;
+      color: #111827;
+    }
+
+    .note {
+      font-size: 10px;
+      color: var(--text-muted);
+      margin-top: 4px;
+    }
+
+    .assistant-box {
+      max-height: 190px;
+      overflow-y: auto;
+      border-radius: 12px;
+      border: 1px solid #e5e7eb;
+      padding: 6px 8px;
+      background: #f9fafb;
+      font-size: 11px;
+      margin-bottom: 6px;
+      color: #374151;
+    }
+
+    .assistant-input-row {
+      display: flex;
+      gap: 6px;
+      align-items: center;
+      margin-top: 4px;
+    }
+
+    .assistant-input {
+      flex: 1;
+      border-radius: 999px;
+      border: 1px solid #d1d5db;
+      padding: 6px 10px;
+      font-size: 11px;
+      outline: none;
+    }
+
+    .btn-primary {
+      border-radius: 999px;
+      border: none;
+      background: linear-gradient(to right, var(--avant-blue), var(--avant-teal));
+      color: #ffffff;
+      padding: 6px 12px;
+      font-size: 11px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    .btn-secondary {
+      border-radius: 999px;
+      border: 1px solid #d1d5db;
+      background: #ffffff;
+      color: #374151;
+      padding: 5px 10px;
+      font-size: 11px;
+      cursor: pointer;
+    }
+
+    .link-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 8px;
+    }
+
+    @media (max-width: 640px) {
+      .story-title {
+        font-size: 22px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="shell">
+    <div class="story-hero" id="top">
+      <div class="topline">Avant Pathfinder × ATOM</div>
+      <h1 class="story-title">A Pathfinder story where the answer arrives before the call ends.</h1>
+      <p class="story-sub">
+        Today, Trusted Advisors walk customers through long IQAs and wait days for research.
+        In the ATOM version of Pathfinder, the system listens with you, thinks with you, and
+        builds the recommendation while you’re still in the room.
+      </p>
+      <div class="story-meta">
+        <span class="story-pill">Concept walkthrough · Not final UI</span>
+        <span>·</span>
+        <span>Designed for Avant product, Pathfinder, and sales leadership.</span>
+      </div>
+      <div class="story-grid">
+        <div class="story-stat">
+          <div class="story-stat-label">IQA Time</div>
+          <div class="story-stat-value">60 → 20–25 min</div>
+          <div class="story-stat-caption">Less form fatigue, more conversation.</div>
+        </div>
+        <div class="story-stat">
+          <div class="story-stat-label">Turnaround</div>
+          <div class="story-stat-value">Days → Minutes</div>
+          <div class="story-stat-caption">Recommendations before you hang up.</div>
+        </div>
+        <div class="story-stat">
+          <div class="story-stat-label">Conversion</div>
+          <div class="story-stat-value">+ 20–25%</div>
+          <div class="story-stat-caption">Modeled uplift with a co‑pilot.</div>
+        </div>
+        <div class="story-stat">
+          <div class="story-stat-label">Advisor Load</div>
+          <div class="story-stat-value">↓</div>
+          <div class="story-stat-caption">Less manual research and orchestration.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="chapters">
+      <button class="chapter-chip active" data-target="scene-1">1. Before & After</button>
+      <button class="chapter-chip" data-target="scene-2">2. Dynamic Matrices</button>
+      <button class="chapter-chip" data-target="scene-3">3. Atlas & Signals</button>
+      <button class="chapter-chip" data-target="scene-4">4. Under the Hood</button>
+      <button class="chapter-chip" data-target="scene-5">5. Roadmap & ROI</button>
+      <button class="chapter-chip" data-target="scene-6">6. Live Examples</button>
+      <button class="chapter-chip" data-target="scene-7">7. Ask ATOM</button>
+    </div>
+
+    <!-- Scene 1 -->
+    <section id="scene-1" class="section">
+      <div class="section-header">
+        <div class="section-kicker">Scene 1 · The Moment of Truth</div>
+        <h2 class="section-title">Pathfinder today vs Pathfinder with ATOM</h2>
+        <p class="section-sub">
+          Same Trusted Advisor, same customer, same hour. Completely different experience.
+        </p>
+      </div>
+
+      <div class="two-col">
+        <div>
+          <div class="story-block-title">Today’s story</div>
+          <p class="step"><span>1.</span> Advisor opens Pathfinder and walks through a 60+ minute IQA.</p>
+          <p class="step"><span>2.</span> The submission vanishes into a 3–5 day engineering queue.</p>
+          <p class="step"><span>3.</span> Someone spends 2–4 hours researching providers and rebuilding a matrix.</p>
+          <p class="step"><span>4.</span> A static PDF and recommendation appear in the advisor’s inbox.</p>
+          <p class="step"><span>5.</span> The advisor tries to re‑ignite the customer conversation days later.</p>
+        </div>
+        <div>
+          <div class="story-block-title">The ATOM story</div>
+          <p class="step"><span>1.</span> As the IQA starts, ATOM quietly begins listening and structuring the session.</p>
+          <p class="step"><span>2.</span> A small side panel surfaces next questions, phrasing, and objections.</p>
+          <p class="step"><span>3.</span> Dynamic Matrices fill in and re‑rank in real time as answers land.</p>
+          <p class="step"><span>4.</span> By minute 25, a ranked recommendation and story arc are already drafted.</p>
+          <p class="step"><span>5.</span> The call ends with a clear path and a customer‑ready artifact, not a todo.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Scene 2 -->
+    <section id="scene-2" class="section">
+      <div class="section-header">
+        <div class="section-kicker">Scene 2 · The Living Matrix</div>
+        <h2 class="section-title">Dynamic Matrices that move with the conversation</h2>
+        <p class="section-sub">
+          Think of Dynamic Matrices as the shared “table” everyone is gathered around – except the table
+          updates itself as requirements change.
+        </p>
+      </div>
+
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Capability</th>
+            <th>Today</th>
+            <th>With ATOM</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>How it’s built</td>
+            <td>Manually, after the call</td>
+            <td>Auto‑populated during the call from IQA answers and signals</td>
+          </tr>
+          <tr>
+            <td>Ranking providers</td>
+            <td>Static per submission</td>
+            <td>Re‑ranks in real time when needs change</td>
+          </tr>
+          <tr>
+            <td>Explaining the scores</td>
+            <td>Depends on who has time to write</td>
+            <td>Every score has a “why” behind it and a source to show</td>
+          </tr>
+          <tr>
+            <td>Deliverables</td>
+            <td>One‑off docs built by hand</td>
+            <td>Advisor and customer versions published automatically</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="cards">
+        <div class="card-sm">
+          <div class="card-sm-title">Auto‑population</div>
+          <p>
+            The moment an IQA answer is captured, the matrix begins to fill in: providers appear,
+            scores are assigned, and obvious mismatches drop away.
+          </p>
+        </div>
+        <div class="card-sm">
+          <div class="card-sm-title">Live re‑ranking</div>
+          <p>
+            A new compliance requirement, a budget guardrail, a deployment preference – mention it,
+            and the matrix reshuffles so the top row always matches the true ask.
+          </p>
+        </div>
+        <div class="card-sm">
+          <div class="card-sm-title">Explainable by design</div>
+          <p>
+            Click into any cell and you see the logic: requirements, provider facts, and supporting
+            documentation. Nothing is “just because the AI said so.”
+          </p>
+        </div>
+      </div>
+
+      <p class="note" style="margin-top:6px;">
+        Want to feel this pattern in your hands? Open a live Dynamic Matrix: <a href="https://www.antimatterai.com/resources/vendor-matrix" target="_blank">AI Vendor Matrix</a>.
+      </p>
+    </section>
+
+    <!-- Scene 3 -->
+    <section id="scene-3" class="section">
+      <div class="section-header">
+        <div class="section-kicker">Scene 3 · The World Is Big</div>
+        <h2 class="section-title">Atlas, IntenIQ, and global data center decisions</h2>
+        <p class="section-sub">
+          Data center deals are where complexity spikes: geography, power, latency, regulation.
+          Atlas and IntenIQ give ATOM Pathfinder‑ready instincts in this landscape.
+        </p>
+      </div>
+
+      <div class="cards">
+        <div class="card-sm">
+          <div class="card-sm-title">Atlas as the map</div>
+          <p>
+            Atlas knows who does what, and where, around the world. ATOM turns Pathfinder IQA answers into
+            precise Atlas queries – no more wrestling with filters mid‑call.
+          </p>
+        </div>
+        <div class="card-sm">
+          <div class="card-sm-title">IntenIQ as the signal layer</div>
+          <p>
+            IntenIQ watches for intent: urgency, risk sensitivity, appetite for change. Those signals
+            help re‑weight providers and guide how the advisor frames the story.
+          </p>
+        </div>
+        <div class="card-sm">
+          <div class="card-sm-title">“Ask Atlas” as the voice</div>
+          <p>
+            Instead of “let me get back to you,” advisors can ask Atlas questions in plain language –
+            and get structured answers they can read aloud and show on screen.
+          </p>
+        </div>
+      </div>
+
+      <p class="note" style="margin-top:6px;">
+        See these ideas live:
+        <a href="https://www.antimatterai.com/resources/channel-partners" target="_blank">Trusted Advisor Assistant</a>,
+        <a href="https://www.antimatterai.com/atom-intentiq" target="_blank">IntenIQ</a>.
+      </p>
+    </section>
+
+    <!-- Scene 4 -->
+    <section id="scene-4" class="section">
+      <div class="section-header">
+        <div class="section-kicker">Scene 4 · Under the Hood</div>
+        <h2 class="section-title">Pathfinder stays the system of record. ATOM becomes the brain.</h2>
+        <p class="section-sub">
+          The architecture is simple on purpose: Pathfinder owns the workflow and data; ATOM adds an
+          evidence‑first, session‑centric intelligence layer.
+        </p>
+      </div>
+
+      <div class="cards">
+        <div class="card-sm">
+          <div class="card-sm-title">Pathfinder</div>
+          <p>
+            Handles log‑in, IQA configuration, submissions, routing, and UI – the front door and
+            the record of everything that happens.
+          </p>
+        </div>
+        <div class="card-sm">
+          <div class="card-sm-title">ATOM services</div>
+          <p>
+            Listen to IQAs and calls, normalize them, retrieve the right provider facts, score
+            fit, coach the advisor, and assemble artifacts in the background.
+          </p>
+        </div>
+        <div class="card-sm">
+          <div class="card-sm-title">Knowledge & providers</div>
+          <p>
+            Provider profiles, Dynamic Matrices, Atlas data, case studies, and compliance details
+            live as a governed knowledge base – the ground truth ATOM references.
+          </p>
+        </div>
+        <div class="card-sm">
+          <div class="card-sm-title">Security & control</div>
+          <p>
+            Encryption, roles, audit, and redaction follow familiar enterprise patterns. ATOM
+            plugs into what Avant already does well, instead of inventing a new island.
+          </p>
+        </div>
+      </div>
+
+      <p class="note">
+        Underneath, this is powered by the same ATOM agentic platform Antimatter uses for other
+        enterprises: <a href="https://www.antimatterai.com/agentic-ai" target="_blank">Agentic AI</a>.
+      </p>
+    </section>
+
+    <!-- Scene 5 -->
+    <section id="scene-5" class="section">
+      <div class="section-header">
+        <div class="section-kicker">Scene 5 · From Pilot to Habit</div>
+        <h2 class="section-title">Roadmap and the shape of the business case</h2>
+        <p class="section-sub">
+          The point is not to launch “AI” – it’s to change how Pathfinder feels to advisors and customers
+          in a matter of weeks, then scale what works.
+        </p>
+      </div>
+
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Phase</th>
+            <th>What you’d see</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>0–1 · Discovery & foundation</td>
+            <td>One pilot category chosen, schemas agreed, Pathfinder and ATOM talking to each other.</td>
+          </tr>
+          <tr>
+            <td>2 · First ATOM‑powered IQA</td>
+            <td>An end‑to‑end experience in a single category: coaching panel, Dynamic Matrix, and <5‑minute recommendation.</td>
+          </tr>
+          <tr>
+            <td>3–4 · Live sessions & more categories</td>
+            <td>Browser sessions with live guidance, “Ask the Matrix/Atlas,” and a repeatable pattern across 3–5 categories.</td>
+          </tr>
+          <tr>
+            <td>5 · Pathfinder, but upgraded</td>
+            <td>Core Pathfinder categories running with ATOM, plus the dashboards that show it’s working.</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="cards">
+        <div class="card-sm">
+          <div class="card-sm-title">Why this is worth it</div>
+          <p>
+            The math is straightforward: shorter IQAs, fewer research hours, and higher close rates
+            stack into eight‑figure annual value in a 100‑rep, multi‑IQA‑per‑week model.
+          </p>
+        </div>
+        <div class="card-sm">
+          <div class="card-sm-title">Why this is safe</div>
+          <p>
+            Facts stay grounded in provider data and documents, coaching is gated by confidence,
+            and ATOM is wired to tolerate imperfect data instead of denying reality.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Scene 6 -->
+    <section id="scene-6" class="section">
+      <div class="section-header">
+        <div class="section-kicker">Scene 6 · Proof It’s Real</div>
+        <h2 class="section-title">What ATOM already does today</h2>
+        <p class="section-sub">
+          Pathfinder × ATOM isn’t a theory. It’s a recombination of pieces that already exist.
+        </p>
+      </div>
+
+      <div class="cards">
+        <a class="card-sm" href="https://www.antimatterai.com/resources/vendor-matrix" target="_blank">
+          <div class="card-sm-title">AI Vendor Matrix</div>
+          <p>
+            Interactive Dynamic Matrix comparing enterprise AI platforms – a direct preview of the
+            Pathfinder matrix experience.
+          </p>
+        </a>
+        <a class="card-sm" href="https://www.antimatterai.com/resources/channel-partners" target="_blank">
+          <div class="card-sm-title">Trusted Advisor Assistant</div>
+          <p>
+            Channel‑focused assistant that mirrors how ATOM can coach Pathfinder Trusted Advisors.
+          </p>
+        </a>
+        <a class="card-sm" href="https://www.antimatterai.com/atom-intentiq" target="_blank">
+          <div class="card-sm-title">IntenIQ</div>
+          <p>
+            Real‑time intent and signal engine, shaping which providers rise to the top and how
+            the story is told.
+          </p>
+        </a>
+        <a class="card-sm" href="https://www.antimatterai.com/agentic-ai" target="_blank">
+          <div class="card-sm-title">ATOM Agentic Platform</div>
+          <p>
+            The full “black box” ATOM stack that this Pathfinder concept is built on.
+          </p>
+        </a>
+      </div>
+    </section>
+
+    <!-- Scene 7 -->
+    <section id="scene-7" class="section">
+      <div class="section-header">
+        <div class="section-kicker">Scene 7 · Ask the Story</div>
+        <h2 class="section-title">Ask ATOM about Pathfinder</h2>
+        <p class="section-sub">
+          Use this panel the way an exec might: to sanity‑check the story, stress‑test the value,
+          and understand what changes on day one.
+        </p>
+      </div>
+
+      <div id="assistantTranscript" class="assistant-box">
+        <div><strong>ATOM:</strong> Ask me what changes for advisors, how Dynamic Matrices actually behave, or how this becomes real inside Pathfinder.</div>
+      </div>
+
+      <div class="assistant-input-row">
+        <input
+          id="assistantInput"
+          class="assistant-input"
+          type="text"
+          placeholder="e.g. What’s the first thing advisors would notice?"
+        />
+        <button class="btn-primary" id="assistantSendBtn">Ask ATOM</button>
+      </div>
+
+      <div class="link-row">
+        <button class="btn-secondary" onclick="window.open('https://www.antimatterai.com/resources/vendor-matrix','_blank')">
+          See Dynamic Matrix live
+        </button>
+        <button class="btn-secondary" onclick="window.open('https://www.antimatterai.com/resources/channel-partners','_blank')">
+          Try Trusted Advisor Assistant
+        </button>
+        <button class="btn-secondary" onclick="window.open('https://www.antimatterai.com/atom-intentiq','_blank')">
+          Explore IntenIQ
+        </button>
+        <button class="btn-secondary" onclick="window.open('https://www.antimatterai.com/agentic-ai','_blank')">
+          View ATOM platform
+        </button>
+      </div>
+    </section>
+  </div>
+
+  <script>
+    // Chapter navigation
+    document.querySelectorAll('.chapter-chip').forEach((chip) => {
+      chip.addEventListener('click', () => {
+        const id = chip.dataset.target;
+        if (!id) return;
+        document.querySelectorAll('.chapter-chip').forEach((c) => c.classList.remove('active'));
+        chip.classList.add('active');
+        const section = document.getElementById(id);
+        if (section) {
+          section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
+    });
+
+    // Executive overview metrics toggle (simplified)
+    const metricsGrid = document.getElementById('metricsGrid');
+    const states = {
+      today: [
+        { label: 'IQA completion', value: '≈ 60 min', caption: 'Long forms; energy drifts.' },
+        { label: 'Turnaround', value: '3–5 days', caption: 'Research lives in a queue.' },
+        { label: 'Conversion', value: 'Baseline', caption: 'Heavily rep‑dependent.' },
+        { label: 'Advisor load', value: 'High', caption: 'Research + orchestration.' }
+      ],
+      atom: [
+        { label: 'IQA completion', value: '20–25 min', caption: 'Shorter, more natural.' },
+        { label: 'Turnaround', value: '< 5 minutes', caption: 'Answer while you’re there.' },
+        { label: 'Conversion', value: '+ 20–25%', caption: 'Better timing + story.' },
+        { label: 'Advisor load', value: 'Lower', caption: 'System does heavy lifting.' }
+      ]
+    };
+
+    function renderMetrics(stateKey) {
+      if (!metricsGrid) return;
+      metricsGrid.innerHTML = '';
+      states[stateKey].forEach((m) => {
+        const div = document.createElement('div');
+        div.className = 'story-stat';
+        div.innerHTML = `
+          <div class="story-stat-label">${m.label}</div>
+          <div class="story-stat-value">${m.value}</div>
+          <div class="story-stat-caption">${m.caption}</div>
+        `;
+        metricsGrid.appendChild(div);
+      });
+    }
+
+    // Reuse hero stats area as metric canvas
+    const heroStats = document.querySelector('.story-grid');
+    heroStats.id = 'metricsGrid';
+    renderMetrics('today');
+
+    const toggleGroup = document.createElement('div');
+    toggleGroup.style.display = 'inline-flex';
+    toggleGroup.style.borderRadius = '999px';
+    toggleGroup.style.border = '1px solid #d1d5db';
+    toggleGroup.style.overflow = 'hidden';
+    toggleGroup.style.fontSize = '10px';
+    toggleGroup.style.marginTop = '8px';
+
+    toggleGroup.innerHTML = `
+      <button type="button" data-state="today" style="padding:4px 9px;border:none;background:#2563eb;color:#ffffff;font-weight:600;cursor:pointer;">Today</button>
+      <button type="button" data-state="atom" style="padding:4px 9px;border:none;background:transparent;color:#6b7280;cursor:pointer;">With ATOM</button>
+    `;
+    document.querySelector('.story-hero').appendChild(toggleGroup);
+
+    toggleGroup.addEventListener('click', (e) => {
+      const btn = e.target.closest('button');
+      if (!btn) return;
+      const state = btn.dataset.state;
+      if (!state) return;
+      const [b1, b2] = toggleGroup.querySelectorAll('button');
+      if (state === 'today') {
+        b1.style.background = '#2563eb'; b1.style.color = '#ffffff'; b1.style.fontWeight = '600';
+        b2.style.background = 'transparent'; b2.style.color = '#6b7280'; b2.style.fontWeight = '400';
+      } else {
+        b2.style.background = '#2563eb'; b2.style.color = '#ffffff'; b2.style.fontWeight = '600';
+        b1.style.background = 'transparent'; b1.style.color = '#6b7280'; b1.style.fontWeight = '400';
+      }
+      renderMetrics(state);
+    });
+
+    // Assistant
+    const qaPairs = [
+      {
+        q: /advisor|trusted advisor|rep|seller/i,
+        a:
+          "For a Trusted Advisor, the biggest change is emotional, not technical. Pathfinder stops feeling like a long intake followed by a black‑box wait. During the call, the system quietly lines up what to ask, what to show, and who is most likely to fit. When the customer says “what would you recommend?”, the advisor already has a clear, evidence‑backed answer instead of “let me get back to you.”"
+      },
+      {
+        q: /dynamic matrix|dynamic matrices|matrix/i,
+        a:
+          "Dynamic Matrices become the shared table in the room. As you gather requirements, the table fills in with providers and scores; as new needs emerge, the rows reshuffle. You can click into any cell and say “here’s exactly why this provider scores high on security and low on geographic coverage.” Then, when the call ends, Pathfinder has both an internal and customer version ready to go."
+      },
+      {
+        q: /atlas|data center|datacenter/i,
+        a:
+          "Atlas is how Pathfinder × ATOM stays credible in the most complex, global deals. Instead of clicking through filters under pressure, the advisor just asks real questions: who can do this in this region, with this certification, at this density. ATOM translates that into Atlas queries, applies hard filters first, and feeds the best candidates straight into Dynamic Matrices."
+      },
+      {
+        q: /roi|value|uplift|business case/i,
+        a:
+          "The story in numbers is simple: shorter IQAs, less research, better timing, and clearer recommendations. That combination increases how many opportunities get to “yes”, and how fast. In a 100‑rep environment, even modest improvements in close rate and cycle time compound into eight‑figure annual value, with a payback measured in quarters, not years."
+      },
+      {
+        q: /risk|hallucination|trust|adoption|fatigue/i,
+        a:
+          "Trust and adoption are solved in the design. Facts come from tables and documents that advisors already recognize; the model explains them, it doesn’t invent them. Signals are gated by confidence and can be turned down if advisors prefer a quieter co‑pilot. And the whole system assumes incomplete data at the start, improving as Pathfinder and Atlas coverage grows."
+      }
+    ];
+
+    function answerFromLocal(query) {
+      for (const pair of qaPairs) {
+        if (pair.q.test(query)) return pair.a;
+      }
+      return (
+        "In short: Pathfinder × ATOM keeps Pathfinder as the place where work happens, and layers on an agentic AI " +
+        "co‑pilot that listens, thinks, and drafts alongside your advisors. The customer feels like they are " +
+        "in a working session that ends with a real answer, not the start of a new waiting period."
+      );
+    }
+
+    const assistantInput = document.getElementById('assistantInput');
+    const assistantSendBtn = document.getElementById('assistantSendBtn');
+    const assistantTranscript = document.getElementById('assistantTranscript');
+
+    function appendMessage(role, text) {
+      const div = document.createElement('div');
+      div.style.marginTop = '4px';
+      div.innerHTML = '<strong>' + role + ':</strong> ' + text.replace(/\n/g, '<br />');
+      assistantTranscript.appendChild(div);
+      assistantTranscript.scrollTop = assistantTranscript.scrollHeight;
+    }
+
+    assistantSendBtn.addEventListener('click', () => {
+      const q = assistantInput.value.trim();
+      if (!q) return;
+      appendMessage('You', q);
+      assistantInput.value = '';
+      setTimeout(() => {
+        const a = answerFromLocal(q);
+        appendMessage('ATOM', a);
+      }, 220);
+    });
+
+    assistantInput.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') assistantSendBtn.click();
+    });
+  </script>
+</body>
+</html>
