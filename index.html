@@ -821,11 +821,246 @@
 
             <div class="demo-controls">
                 <input type="text" class="demo-input" id="scanQuery" placeholder="Enter product (e.g., Nike Air Force 1, Meta Quest 3)" value="Nike Air Force 1">
+                <select class="demo-input" id="minMargin" style="max-width: 200px;">
+                    <option value="15">Min 15% Margin</option>
+                    <option value="20" selected>Min 20% Margin</option>
+                    <option value="30">Min 30% Margin</option>
+                    <option value="40">Min 40% Margin</option>
+                </select>
                 <button class="demo-btn" onclick="runSmartScan()">🔍 Scan Deals</button>
             </div>
 
             <div class="demo-results" id="demoResults">
                 <!-- Results populated by JS -->
+            </div>
+
+            <!-- Business Model Comparison -->
+            <div style="margin-top: 60px;">
+                <h3 style="font-size: 2rem; text-align: center; margin-bottom: 30px; background: linear-gradient(135deg, #ec4899, #8b5cf6); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Business Model Analysis</h3>
+                
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 20px; margin-bottom: 40px;">
+                    <!-- Dropshipping Model -->
+                    <div style="background: var(--bg-darker); border-radius: 12px; padding: 25px; border: 2px solid rgba(59, 130, 246, 0.3);">
+                        <h4 style="color: var(--color-tech); margin-bottom: 15px; font-size: 1.3rem;">🚀 Dropshipping Model</h4>
+                        <div style="margin-bottom: 20px;">
+                            <div style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 8px;">Startup Cost</div>
+                            <div style="font-size: 1.5rem; font-weight: 700; color: var(--color-clinical);">$5K - $15K</div>
+                        </div>
+                        <div style="margin-bottom: 20px;">
+                            <div style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 8px;">Profit Margin</div>
+                            <div style="font-size: 1.5rem; font-weight: 700; color: var(--color-clinical);">10-15%</div>
+                        </div>
+                        <div style="background: rgba(16, 185, 129, 0.1); padding: 15px; border-radius: 8px; margin-bottom: 15px;">
+                            <div style="font-weight: 700; margin-bottom: 8px; color: var(--color-clinical);">✅ Pros</div>
+                            <ul style="margin: 0; padding-left: 20px; font-size: 0.9rem; line-height: 1.8; color: var(--text-muted);">
+                                <li>Low upfront capital ($5-15K)</li>
+                                <li>No inventory holding costs</li>
+                                <li>Fast market testing</li>
+                                <li>Infinite scalability</li>
+                                <li>No warehouse needed</li>
+                            </ul>
+                        </div>
+                        <div style="background: rgba(239, 68, 68, 0.1); padding: 15px; border-radius: 8px;">
+                            <div style="font-weight: 700; margin-bottom: 8px; color: #ef4444;">❌ Cons</div>
+                            <ul style="margin: 0; padding-left: 20px; font-size: 0.9rem; line-height: 1.8; color: var(--text-muted);">
+                                <li>Lower margins (10-15%)</li>
+                                <li>No inventory control</li>
+                                <li>Supplier dependency risk</li>
+                                <li>Longer shipping times</li>
+                                <li>Customer experience variability</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Inventory Holding Model -->
+                    <div style="background: var(--bg-darker); border-radius: 12px; padding: 25px; border: 2px solid rgba(236, 72, 153, 0.3);">
+                        <h4 style="color: var(--color-smartscan); margin-bottom: 15px; font-size: 1.3rem;">📦 Inventory Holding Model</h4>
+                        <div style="margin-bottom: 20px;">
+                            <div style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 8px;">Startup Cost</div>
+                            <div style="font-size: 1.5rem; font-weight: 700; color: var(--color-clinical);">$25K - $100K</div>
+                        </div>
+                        <div style="margin-bottom: 20px;">
+                            <div style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 8px;">Profit Margin</div>
+                            <div style="font-size: 1.5rem; font-weight: 700; color: var(--color-clinical);">20-35%</div>
+                        </div>
+                        <div style="background: rgba(16, 185, 129, 0.1); padding: 15px; border-radius: 8px; margin-bottom: 15px;">
+                            <div style="font-weight: 700; margin-bottom: 8px; color: var(--color-clinical);">✅ Pros</div>
+                            <ul style="margin: 0; padding-left: 20px; font-size: 0.9rem; line-height: 1.8; color: var(--text-muted);">
+                                <li>Higher margins (20-35%)</li>
+                                <li>Full quality control</li>
+                                <li>Faster shipping (2-day)</li>
+                                <li>Better customer experience</li>
+                                <li>Bulk purchase discounts</li>
+                                <li>Brand building potential</li>
+                            </ul>
+                        </div>
+                        <div style="background: rgba(239, 68, 68, 0.1); padding: 15px; border-radius: 8px;">
+                            <div style="font-weight: 700; margin-bottom: 8px; color: #ef4444;">❌ Cons</div>
+                            <ul style="margin: 0; padding-left: 20px; font-size: 0.9rem; line-height: 1.8; color: var(--text-muted);">
+                                <li>High capital requirements</li>
+                                <li>Storage costs (20-30% of inventory)</li>
+                                <li>Inventory depreciation risk</li>
+                                <li>Cash flow tied up</li>
+                                <li>Unsold stock write-offs</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Hybrid Model (RECOMMENDED) -->
+                    <div style="background: linear-gradient(135deg, rgba(139, 92, 246, 0.15), rgba(236, 72, 153, 0.15)); border-radius: 12px; padding: 25px; border: 2px solid var(--color-core); box-shadow: 0 10px 30px rgba(139, 92, 246, 0.3);">
+                        <div style="display: inline-block; background: var(--color-core); color: white; padding: 4px 12px; border-radius: 6px; font-size: 0.8rem; font-weight: 700; margin-bottom: 10px;">⭐ RECOMMENDED</div>
+                        <h4 style="color: var(--color-core); margin-bottom: 15px; font-size: 1.3rem;">🎯 Hybrid SmartScan Model</h4>
+                        <div style="margin-bottom: 20px;">
+                            <div style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 8px;">Startup Cost</div>
+                            <div style="font-size: 1.5rem; font-weight: 700; color: var(--color-clinical);">$15K - $50K</div>
+                        </div>
+                        <div style="margin-bottom: 20px;">
+                            <div style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 8px;">Blended Margin</div>
+                            <div style="font-size: 1.5rem; font-weight: 700; color: var(--color-clinical);">18-28%</div>
+                        </div>
+                        <div style="background: rgba(16, 185, 129, 0.1); padding: 15px; border-radius: 8px; margin-bottom: 15px;">
+                            <div style="font-weight: 700; margin-bottom: 8px; color: var(--color-clinical);">✅ Best of Both</div>
+                            <ul style="margin: 0; padding-left: 20px; font-size: 0.9rem; line-height: 1.8; color: var(--text-muted);">
+                                <li>Start dropship, add inventory winners</li>
+                                <li>AI identifies high-velocity SKUs</li>
+                                <li>Hold top 20% (80% of profit)</li>
+                                <li>Dropship long-tail items</li>
+                                <li>Managed capital risk</li>
+                                <li>Optimized margin/velocity mix</li>
+                            </ul>
+                        </div>
+                        <div style="background: rgba(139, 92, 246, 0.1); padding: 15px; border-radius: 8px;">
+                            <div style="font-weight: 700; margin-bottom: 8px; color: var(--color-core);">🧠 AI-Driven Strategy</div>
+                            <ul style="margin: 0; padding-left: 20px; font-size: 0.9rem; line-height: 1.8; color: var(--text-muted);">
+                                <li>Track sell-through rate for 30 days</li>
+                                <li>Auto-flag items with 10+ sales/month</li>
+                                <li>Shift to bulk purchase + holding</li>
+                                <li>Increase margin from 15% to 30%</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Financial Projections -->
+                <div style="background: var(--bg-card); border-radius: 16px; padding: 30px; border: 1px solid rgba(139, 92, 246, 0.2);">
+                    <h4 style="text-align: center; font-size: 1.8rem; margin-bottom: 25px; background: linear-gradient(135deg, #3b82f6, #8b5cf6); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Hybrid Model Financial Projections</h4>
+                    
+                    <div style="overflow-x: auto;">
+                        <table style="width: 100%; border-collapse: collapse; font-size: 0.95rem;">
+                            <thead>
+                                <tr style="background: rgba(139, 92, 246, 0.1);">
+                                    <th style="padding: 15px; text-align: left; border-bottom: 2px solid rgba(139, 92, 246, 0.3);">Metric</th>
+                                    <th style="padding: 15px; text-align: center; border-bottom: 2px solid rgba(139, 92, 246, 0.3);">Year 1</th>
+                                    <th style="padding: 15px; text-align: center; border-bottom: 2px solid rgba(139, 92, 246, 0.3);">Year 2</th>
+                                    <th style="padding: 15px; text-align: center; border-bottom: 2px solid rgba(139, 92, 246, 0.3);">Year 3</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td style="padding: 12px; border-bottom: 1px solid rgba(148, 163, 184, 0.1);">Monthly Deals Executed</td>
+                                    <td style="padding: 12px; text-align: center; border-bottom: 1px solid rgba(148, 163, 184, 0.1);">1,000</td>
+                                    <td style="padding: 12px; text-align: center; border-bottom: 1px solid rgba(148, 163, 184, 0.1);">5,000</td>
+                                    <td style="padding: 12px; text-align: center; border-bottom: 1px solid rgba(148, 163, 184, 0.1);">15,000</td>
+                                </tr>
+                                <tr>
+                                    <td style="padding: 12px; border-bottom: 1px solid rgba(148, 163, 184, 0.1);">Avg Deal Size</td>
+                                    <td style="padding: 12px; text-align: center; border-bottom: 1px solid rgba(148, 163, 184, 0.1);">$120</td>
+                                    <td style="padding: 12px; text-align: center; border-bottom: 1px solid rgba(148, 163, 184, 0.1);">$140</td>
+                                    <td style="padding: 12px; text-align: center; border-bottom: 1px solid rgba(148, 163, 184, 0.1);">$160</td>
+                                </tr>
+                                <tr>
+                                    <td style="padding: 12px; border-bottom: 1px solid rgba(148, 163, 184, 0.1);">Blended Margin</td>
+                                    <td style="padding: 12px; text-align: center; border-bottom: 1px solid rgba(148, 163, 184, 0.1);">18%</td>
+                                    <td style="padding: 12px; text-align: center; border-bottom: 1px solid rgba(148, 163, 184, 0.1);">23%</td>
+                                    <td style="padding: 12px; text-align: center; border-bottom: 1px solid rgba(148, 163, 184, 0.1);">28%</td>
+                                </tr>
+                                <tr style="background: rgba(16, 185, 129, 0.05);">
+                                    <td style="padding: 12px; font-weight: 700; border-bottom: 1px solid rgba(148, 163, 184, 0.1);">Monthly Revenue</td>
+                                    <td style="padding: 12px; text-align: center; font-weight: 700; border-bottom: 1px solid rgba(148, 163, 184, 0.1);">$120K</td>
+                                    <td style="padding: 12px; text-align: center; font-weight: 700; border-bottom: 1px solid rgba(148, 163, 184, 0.1);">$700K</td>
+                                    <td style="padding: 12px; text-align: center; font-weight: 700; border-bottom: 1px solid rgba(148, 163, 184, 0.1);">$2.4M</td>
+                                </tr>
+                                <tr style="background: rgba(16, 185, 129, 0.1);">
+                                    <td style="padding: 12px; font-weight: 700;">Annual Profit</td>
+                                    <td style="padding: 12px; text-align: center; font-weight: 700; color: var(--color-clinical);">$259K</td>
+                                    <td style="padding: 12px; text-align: center; font-weight: 700; color: var(--color-clinical);">$1.93M</td>
+                                    <td style="padding: 12px; text-align: center; font-weight: 700; color: var(--color-clinical);">$8.06M</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div style="margin-top: 30px; padding: 20px; background: rgba(59, 130, 246, 0.1); border-radius: 10px; border-left: 4px solid var(--color-tech);">
+                        <div style="font-weight: 700; margin-bottom: 10px; font-size: 1.1rem;">💡 Revenue Model Breakdown</div>
+                        <ul style="margin: 0; padding-left: 20px; line-height: 2; color: var(--text-muted);">
+                            <li><strong>Direct Sales:</strong> 70% of revenue (consumer purchases through R.E.A.L platform)</li>
+                            <li><strong>SaaS API Access:</strong> 15% of revenue ($99-499/mo for SmartScan API to resellers)</li>
+                            <li><strong>Marketplace Fees:</strong> 10% of revenue (5-10% GMV on third-party sellers)</li>
+                            <li><strong>Data Licensing:</strong> 5% of revenue (price intelligence to brands/retailers)</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Recommended Path -->
+                <div style="margin-top: 40px; background: linear-gradient(135deg, var(--color-tech), var(--color-core)); border-radius: 16px; padding: 40px; color: white; box-shadow: 0 20px 50px rgba(59, 130, 246, 0.4);">
+                    <h4 style="font-size: 2rem; margin-bottom: 20px; text-align: center;">🚀 Recommended Monetization Path</h4>
+                    
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 25px; margin-top: 30px;">
+                        <div style="background: rgba(255, 255, 255, 0.1); padding: 20px; border-radius: 10px; backdrop-filter: blur(10px);">
+                            <div style="font-size: 2rem; margin-bottom: 10px;">📍 Phase 1</div>
+                            <div style="font-size: 1.1rem; font-weight: 700; margin-bottom: 10px;">Months 1-6: Dropship Launch</div>
+                            <ul style="margin: 0; padding-left: 20px; font-size: 0.9rem; line-height: 1.8; opacity: 0.9;">
+                                <li>Launch with $15K capital</li>
+                                <li>Focus: Sneakers + Electronics</li>
+                                <li>100% dropship (test market)</li>
+                                <li>Target: 1,000 deals/month</li>
+                                <li>Build AI scoring algorithm</li>
+                            </ul>
+                        </div>
+
+                        <div style="background: rgba(255, 255, 255, 0.1); padding: 20px; border-radius: 10px; backdrop-filter: blur(10px);">
+                            <div style="font-size: 2rem; margin-bottom: 10px;">📊 Phase 2</div>
+                            <div style="font-size: 1.1rem; font-weight: 700; margin-bottom: 10px;">Months 6-12: Hybrid Transition</div>
+                            <ul style="margin: 0; padding-left: 20px; font-size: 0.9rem; line-height: 1.8; opacity: 0.9;">
+                                <li>Invest $30K in top-20% SKUs</li>
+                                <li>Hold fast movers (10+ sales/mo)</li>
+                                <li>Dropship long-tail items</li>
+                                <li>Launch SaaS API ($99-499/mo)</li>
+                                <li>Build supplier relationships</li>
+                            </ul>
+                        </div>
+
+                        <div style="background: rgba(255, 255, 255, 0.1); padding: 20px; border-radius: 10px; backdrop-filter: blur(10px);">
+                            <div style="font-size: 2rem; margin-bottom: 10px;">🏭 Phase 3</div>
+                            <div style="font-size: 1.1rem; font-weight: 700; margin-bottom: 10px;">Year 2: Wholesale + Scale</div>
+                            <ul style="margin: 0; padding-left: 20px; font-size: 0.9rem; line-height: 1.8; opacity: 0.9;">
+                                <li>Negotiate wholesale terms</li>
+                                <li>3PL warehouse partnership</li>
+                                <li>Expand to 10+ categories</li>
+                                <li>White-label API to retailers</li>
+                                <li>Target: 5,000 deals/month</li>
+                            </ul>
+                        </div>
+
+                        <div style="background: rgba(255, 255, 255, 0.1); padding: 20px; border-radius: 10px; backdrop-filter: blur(10px);">
+                            <div style="font-size: 2rem; margin-bottom: 10px;">🎯 Phase 4</div>
+                            <div style="font-size: 1.1rem; font-weight: 700; margin-bottom: 10px;">Year 3: Exit Strategy</div>
+                            <ul style="margin: 0; padding-left: 20px; font-size: 0.9rem; line-height: 1.8; opacity: 0.9;">
+                                <li>$50-100M annual revenue</li>
+                                <li>Proprietary price data moat</li>
+                                <li>15,000+ deals/month</li>
+                                <li>Acquisition target for Amazon/Walmart</li>
+                                <li>Exit: $200-500M valuation</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div style="margin-top: 30px; padding: 20px; background: rgba(0, 0, 0, 0.2); border-radius: 10px; text-align: center;">
+                        <div style="font-size: 1.2rem; font-weight: 700; margin-bottom: 10px;">💰 Capital Efficiency</div>
+                        <div style="font-size: 2.5rem; font-weight: 800; margin-bottom: 5px;">4-6x ROIC</div>
+                        <div style="opacity: 0.9;">Return on invested capital by Year 2</div>
+                    </div>
+                </div>
             </div>
         </div>
 
@@ -1167,22 +1402,29 @@
         // SmartScan Demo
         function runSmartScan() {
             const query = document.getElementById('scanQuery').value;
+            const minMargin = parseInt(document.getElementById('minMargin').value);
             const resultsDiv = document.getElementById('demoResults');
             
             // Show loading state
-            resultsDiv.innerHTML = '<p style="text-align: center; color: var(--text-muted); padding: 40px;">🔍 Scanning retailers for best deals...</p>';
+            resultsDiv.innerHTML = '<p style="text-align: center; color: var(--text-muted); padding: 40px;">🔍 Scanning 1000+ retailers via Perplexity API...<br><span style="font-size: 0.9rem; opacity: 0.7;">Checking prices, coupons, and historical data</span></p>';
             
             // Simulate API call with demo data
             setTimeout(() => {
-                const demoDeals = [
+                const allDeals = [
                     {
                         score: 92,
                         product: 'Nike Air Force 1 \'07 White',
                         retailer: 'Foot Locker',
                         oldPrice: 110,
                         newPrice: 79.99,
-                        margin: '$28 profit (35%)',
-                        discount: 27
+                        costPrice: 68,
+                        margin: 15,
+                        marginDollars: 12,
+                        discount: 27,
+                        velocity: 'High',
+                        coupon: 'EXTRA10',
+                        history: 'Lowest ever (was $89 Black Friday)',
+                        availability: 'In Stock - 247 units'
                     },
                     {
                         score: 88,
@@ -1190,8 +1432,14 @@
                         retailer: 'Champs Sports',
                         oldPrice: 110,
                         newPrice: 84.99,
-                        margin: '$22 profit (26%)',
-                        discount: 23
+                        costPrice: 68,
+                        margin: 20,
+                        marginDollars: 17,
+                        discount: 23,
+                        velocity: 'Medium',
+                        coupon: 'FLASH15',
+                        history: 'Near lowest (was $79.99 on 12/15/25)',
+                        availability: 'In Stock - 89 units'
                     },
                     {
                         score: 85,
@@ -1199,8 +1447,14 @@
                         retailer: 'Nike.com',
                         oldPrice: 130,
                         newPrice: 89.97,
-                        margin: '$32 profit (36%)',
-                        discount: 31
+                        costPrice: 68,
+                        margin: 24,
+                        marginDollars: 22,
+                        discount: 31,
+                        velocity: 'High',
+                        coupon: 'MEMBER20',
+                        history: 'Lowest ever',
+                        availability: 'In Stock - 1,203 units'
                     },
                     {
                         score: 81,
@@ -1208,21 +1462,111 @@
                         retailer: 'Finish Line',
                         oldPrice: 120,
                         newPrice: 89.99,
-                        margin: '$24 profit (27%)',
-                        discount: 25
+                        costPrice: 72,
+                        margin: 20,
+                        marginDollars: 18,
+                        discount: 25,
+                        velocity: 'Medium',
+                        coupon: 'SPRING25',
+                        history: 'Good deal (avg $105)',
+                        availability: 'In Stock - 156 units'
+                    },
+                    {
+                        score: 94,
+                        product: 'Meta Quest 3 128GB',
+                        retailer: 'Amazon',
+                        oldPrice: 499,
+                        newPrice: 429.99,
+                        costPrice: 350,
+                        margin: 18.6,
+                        marginDollars: 80,
+                        discount: 14,
+                        velocity: 'Very High',
+                        coupon: 'Prime exclusive',
+                        history: 'Near lowest (was $399 Black Friday)',
+                        availability: 'In Stock - 2,847 units'
+                    },
+                    {
+                        score: 78,
+                        product: 'Nike Air Max 90 White',
+                        retailer: 'Foot Action',
+                        oldPrice: 140,
+                        newPrice: 99.99,
+                        costPrice: 85,
+                        margin: 15,
+                        marginDollars: 15,
+                        discount: 29,
+                        velocity: 'Low',
+                        coupon: 'CLEAR30',
+                        history: 'Clearance price',
+                        availability: 'Limited - 23 units'
+                    },
+                    {
+                        score: 96,
+                        product: 'Apple AirPods Pro 2',
+                        retailer: 'Best Buy',
+                        oldPrice: 249,
+                        newPrice: 189.99,
+                        costPrice: 155,
+                        margin: 18.4,
+                        marginDollars: 35,
+                        discount: 24,
+                        velocity: 'Very High',
+                        coupon: 'No code needed',
+                        history: 'Lowest ever (was $199 Black Friday)',
+                        availability: 'In Stock - 892 units'
+                    },
+                    {
+                        score: 72,
+                        product: 'Nike Dunk Low Panda',
+                        retailer: 'Dick\'s Sporting Goods',
+                        oldPrice: 120,
+                        newPrice: 94.99,
+                        costPrice: 82,
+                        margin: 13.7,
+                        marginDollars: 13,
+                        discount: 21,
+                        velocity: 'Medium',
+                        coupon: 'SCORE20',
+                        history: 'Good deal (avg $110)',
+                        availability: 'In Stock - 67 units'
                     }
                 ];
                 
-                resultsDiv.innerHTML = demoDeals.map(deal => `
+                // Filter by minimum margin
+                const filteredDeals = allDeals.filter(deal => deal.margin >= minMargin);
+                
+                if (filteredDeals.length === 0) {
+                    resultsDiv.innerHTML = `<p style="text-align: center; color: var(--text-muted); padding: 40px;">No deals found with ${minMargin}%+ margin.<br><span style="font-size: 0.9rem; opacity: 0.7;">Try lowering the margin threshold</span></p>`;
+                    return;
+                }
+                
+                resultsDiv.innerHTML = filteredDeals.map(deal => `
                     <div class="deal-card">
-                        <div class="deal-score">Score: ${deal.score}</div>
+                        <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 12px;">
+                            <div class="deal-score">Score: ${deal.score}</div>
+                            <div style="background: rgba(59, 130, 246, 0.1); padding: 4px 10px; border-radius: 12px; font-size: 0.8rem; font-weight: 600;">${deal.velocity} Velocity</div>
+                        </div>
                         <div class="deal-product">${deal.product}</div>
                         <div class="deal-retailer">📍 ${deal.retailer}</div>
-                        <div class="deal-pricing">
-                            <span class="deal-price-old">$${deal.oldPrice}</span>
-                            <span class="deal-price-new">$${deal.newPrice}</span>
+                        <div style="background: rgba(236, 72, 153, 0.1); padding: 8px; border-radius: 6px; margin: 10px 0; font-size: 0.85rem;">
+                            <strong>💳 Coupon:</strong> ${deal.coupon}
                         </div>
-                        <div class="deal-margin">💰 ${deal.margin}</div>
+                        <div class="deal-pricing">
+                            <div>
+                                <div class="deal-price-old">$${deal.oldPrice}</div>
+                                <div style="font-size: 0.75rem; color: var(--text-muted); margin-top: 2px;">${deal.discount}% off</div>
+                            </div>
+                            <div class="deal-price-new">$${deal.newPrice}</div>
+                        </div>
+                        <div class="deal-margin">💰 $${deal.marginDollars} profit (${deal.margin}% margin)</div>
+                        <div style="margin-top: 12px; padding-top: 12px; border-top: 1px solid rgba(148, 163, 184, 0.1); font-size: 0.85rem; color: var(--text-muted);">
+                            <div style="margin-bottom: 5px;"><strong>📊 History:</strong> ${deal.history}</div>
+                            <div><strong>📦 Stock:</strong> ${deal.availability}</div>
+                        </div>
+                        <button style="width: 100%; margin-top: 12px; padding: 10px; background: linear-gradient(135deg, #10b981, #059669); border: none; border-radius: 8px; color: white; font-weight: 700; cursor: pointer; transition: all 0.3s;" onmouseover="this.style.transform='translateY(-2px)'" onmouseout="this.style.transform='translateY(0)'">
+                            🛒 Auto-Purchase & Fulfill
+                        </button>
                     </div>
                 `).join('');
             }, 1500);
