@@ -1,853 +1,1243 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <title>Avant Pathfinder × ATOM – Storyboard</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <style>
-    :root {
-      --avant-blue: #2563eb;
-      --avant-blue-soft: #ebf2ff;
-      --avant-teal: #0ea5e9;
-      --bg: #f5f5f7;
-      --card: #ffffff;
-      --border: #e5e7eb;
-      --text-main: #0f172a;
-      --text-muted: #6b7280;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>R.E.A.L Ecosystem - AI-Powered Platform</title>
+    <style>
+        :root {
+            --color-clinical: #10b981;
+            --color-tech: #3b82f6;
+            --color-enterprise: #f59e0b;
+            --color-kentucky: #059669;
+            --color-core: #8b5cf6;
+            --color-smartscan: #ec4899;
+            --bg-dark: #0f172a;
+            --bg-card: #1e293b;
+            --bg-darker: #020617;
+            --text-light: #f1f5f9;
+            --text-muted: #94a3b8;
+            --accent-glow: rgba(139, 92, 246, 0.3);
+        }
 
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-    body {
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      background: radial-gradient(circle at top, #ffffff, #f3f4f6);
-      color: var(--text-main);
-      min-height: 100vh;
-    }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Inter', sans-serif;
+            background: linear-gradient(135deg, #020617 0%, #0f172a 50%, #1e293b 100%);
+            color: var(--text-light);
+            overflow-x: hidden;
+        }
 
-    a {
-      color: var(--avant-blue);
-      text-decoration: none;
-    }
+        /* Navigation */
+        .nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(2, 6, 23, 0.9);
+            backdrop-filter: blur(20px);
+            padding: 15px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 2000;
+            border-bottom: 1px solid rgba(148, 163, 184, 0.1);
+        }
 
-    .shell {
-      max-width: 960px;
-      margin: 0 auto;
-      padding: 18px 14px 32px;
-    }
+        .nav-logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
 
-    .topline {
-      font-size: 11px;
-      text-transform: uppercase;
-      letter-spacing: 0.18em;
-      color: var(--text-muted);
-      margin-bottom: 4px;
-    }
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+        }
 
-    .story-hero {
-      background: linear-gradient(135deg, #f9fafb, #eff6ff);
-      border-radius: 18px;
-      border: 1px solid rgba(209,213,219,0.8);
-      box-shadow: 0 16px 40px rgba(15,23,42,0.06);
-      padding: 18px 18px 16px;
-      margin-bottom: 18px;
-    }
+        .nav-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+            cursor: pointer;
+        }
 
-    .story-title {
-      font-size: 26px;
-      font-weight: 800;
-      line-height: 1.2;
-      color: #0b1120;
-      margin-bottom: 8px;
-    }
+        .nav-links a:hover {
+            color: var(--text-light);
+        }
 
-    .story-sub {
-      font-size: 13px;
-      color: var(--text-muted);
-      max-width: 640px;
-      margin-bottom: 12px;
-    }
+        /* Header */
+        .header {
+            text-align: center;
+            padding: 120px 20px 60px;
+            background: radial-gradient(circle at 50% 0%, rgba(139, 92, 246, 0.15), transparent 70%);
+            margin-top: 60px;
+        }
 
-    .story-meta {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      align-items: center;
-      font-size: 11px;
-      color: #4b5563;
-    }
+        .header h1 {
+            font-size: 4rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #3b82f6, #8b5cf6, #ec4899);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 20px;
+            letter-spacing: -2px;
+        }
 
-    .story-pill {
-      padding: 4px 9px;
-      border-radius: 999px;
-      border: 1px solid rgba(148,163,184,0.5);
-      background: #ffffff;
-    }
+        .header p {
+            font-size: 1.5rem;
+            color: var(--text-muted);
+            max-width: 800px;
+            margin: 0 auto 30px;
+            line-height: 1.6;
+        }
 
-    .story-grid {
-      margin-top: 12px;
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-      gap: 8px;
-    }
+        .header-badges {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
 
-    .story-stat {
-      border-radius: 12px;
-      border: 1px solid rgba(209,213,219,0.9);
-      background: rgba(255,255,255,0.9);
-      padding: 7px 9px;
-      font-size: 10px;
-    }
+        .badge {
+            padding: 8px 20px;
+            background: rgba(59, 130, 246, 0.1);
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
 
-    .story-stat-label {
-      text-transform: uppercase;
-      letter-spacing: 0.12em;
-      color: #6b7280;
-      font-size: 9px;
-      margin-bottom: 2px;
-    }
+        /* Container */
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
 
-    .story-stat-value {
-      font-weight: 700;
-      font-size: 15px;
-      color: #111827;
-    }
+        /* Stats Grid */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 60px 0;
+        }
 
-    .story-stat-caption {
-      color: #6b7280;
-      font-size: 10px;
-    }
+        .stat-card {
+            background: linear-gradient(135deg, var(--bg-card), var(--bg-darker));
+            padding: 30px;
+            border-radius: 16px;
+            border: 1px solid rgba(148, 163, 184, 0.1);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
 
-    .chapters {
-      display: flex;
-      gap: 6px;
-      overflow-x: auto;
-      margin: 10px 0 14px;
-      padding-bottom: 4px;
-    }
+        .stat-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: linear-gradient(to bottom, var(--color-tech), var(--color-core));
+        }
 
-    .chapter-chip {
-      border-radius: 999px;
-      border: 1px solid rgba(209,213,219,0.9);
-      background: #ffffff;
-      padding: 5px 10px;
-      font-size: 11px;
-      white-space: nowrap;
-      color: #4b5563;
-      cursor: pointer;
-      transition: background 0.12s ease, color 0.12s ease, border-color 0.12s ease;
-    }
+        .stat-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+            border-color: rgba(139, 92, 246, 0.3);
+        }
 
-    .chapter-chip.active {
-      background: var(--avant-blue-soft);
-      border-color: rgba(37,99,235,0.5);
-      color: var(--avant-blue);
-      font-weight: 600;
-    }
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 10px;
+            background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
 
-    .section {
-      background: var(--card);
-      border-radius: 16px;
-      border: 1px solid var(--border);
-      padding: 14px 14px 12px;
-      box-shadow: 0 10px 28px rgba(15,23,42,0.05);
-      margin-bottom: 12px;
-    }
+        .stat-label {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            font-weight: 500;
+        }
 
-    .section-header {
-      margin-bottom: 8px;
-    }
+        /* Section Headers */
+        .section-header {
+            text-align: center;
+            margin: 80px 0 40px;
+        }
 
-    .section-kicker {
-      font-size: 11px;
-      color: var(--avant-blue);
-      text-transform: uppercase;
-      letter-spacing: 0.16em;
-      margin-bottom: 2px;
-    }
+        .section-header h2 {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 15px;
+            background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
 
-    .section-title {
-      font-size: 16px;
-      font-weight: 700;
-      color: #111827;
-      margin-bottom: 3px;
-    }
+        .section-header p {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            max-width: 700px;
+            margin: 0 auto;
+        }
 
-    .section-sub {
-      font-size: 12px;
-      color: var(--text-muted);
-    }
+        /* Ecosystem Visualization */
+        .ecosystem-viz {
+            position: relative;
+            height: 900px;
+            margin: 60px 0;
+            background: radial-gradient(circle at center, rgba(139, 92, 246, 0.05), transparent 70%);
+            border-radius: 20px;
+            padding: 40px;
+        }
 
-    .two-col {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 10px;
-      margin-top: 8px;
-      font-size: 12px;
-      color: #374151;
-    }
+        .orbit {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            border: 2px dashed rgba(148, 163, 184, 0.15);
+            border-radius: 50%;
+            animation: rotate 60s linear infinite;
+        }
 
-    .story-block-title {
-      font-weight: 600;
-      font-size: 12px;
-      margin-bottom: 4px;
-      color: #111827;
-    }
+        @keyframes rotate {
+            from { transform: translate(-50%, -50%) rotate(0deg); }
+            to { transform: translate(-50%, -50%) rotate(360deg); }
+        }
 
-    .step {
-      margin-bottom: 4px;
-    }
+        .orbit-1 { width: 380px; height: 380px; animation-duration: 40s; }
+        .orbit-2 { width: 540px; height: 540px; animation-duration: 50s; }
+        .orbit-3 { width: 700px; height: 700px; animation-duration: 60s; }
+        .orbit-4 { width: 840px; height: 840px; animation-duration: 70s; }
 
-    .step span {
-      color: #9ca3af;
-      margin-right: 3px;
-    }
+        .core-hub {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 220px;
+            height: 220px;
+            background: linear-gradient(135deg, var(--color-core), #a78bfa);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.6rem;
+            font-weight: 800;
+            text-align: center;
+            box-shadow: 0 0 80px rgba(139, 92, 246, 0.6);
+            cursor: pointer;
+            transition: all 0.4s ease;
+            z-index: 100;
+            border: 3px solid rgba(255, 255, 255, 0.1);
+        }
 
-    .table {
-      width: 100%;
-      border-collapse: collapse;
-      margin-top: 8px;
-      font-size: 11px;
-    }
+        .core-hub:hover {
+            transform: translate(-50%, -50%) scale(1.12);
+            box-shadow: 0 0 120px rgba(139, 92, 246, 0.8);
+        }
 
-    .table th,
-    .table td {
-      border: 1px solid #e5e7eb;
-      padding: 6px;
-      text-align: left;
-      vertical-align: top;
-    }
+        .node {
+            position: absolute;
+            width: 160px;
+            padding: 18px;
+            background: linear-gradient(135deg, var(--bg-card), var(--bg-darker));
+            border-radius: 14px;
+            border: 2px solid;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(10px);
+        }
 
-    .table th {
-      background: #eff6ff;
-      color: #1d4ed8;
-      font-weight: 600;
-      font-size: 11px;
-    }
+        .node:hover {
+            transform: scale(1.18);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6);
+            z-index: 50;
+        }
 
-    .cards {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 8px;
-      margin-top: 8px;
-      font-size: 11px;
-      color: #374151;
-    }
+        .node-title {
+            font-weight: 700;
+            font-size: 0.95rem;
+            margin-bottom: 8px;
+            line-height: 1.3;
+        }
 
-    .card-sm {
-      border-radius: 12px;
-      border: 1px solid #e5e7eb;
-      background: #f9fafb;
-      padding: 7px 9px;
-    }
+        .node-revenue {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            font-weight: 600;
+        }
 
-    .card-sm-title {
-      font-weight: 600;
-      margin-bottom: 3px;
-      font-size: 11px;
-      color: #111827;
-    }
+        .node-clinical { border-color: var(--color-clinical); }
+        .node-tech { border-color: var(--color-tech); }
+        .node-enterprise { border-color: var(--color-enterprise); }
+        .node-kentucky { border-color: var(--color-kentucky); }
+        .node-smartscan { border-color: var(--color-smartscan); }
 
-    .note {
-      font-size: 10px;
-      color: var(--text-muted);
-      margin-top: 4px;
-    }
+        /* SmartScan Demo Section */
+        .smartscan-demo {
+            background: linear-gradient(135deg, var(--bg-darker), var(--bg-card));
+            border-radius: 20px;
+            padding: 50px;
+            margin: 60px 0;
+            border: 1px solid rgba(236, 72, 153, 0.2);
+            box-shadow: 0 20px 60px rgba(236, 72, 153, 0.1);
+        }
 
-    .assistant-box {
-      max-height: 190px;
-      overflow-y: auto;
-      border-radius: 12px;
-      border: 1px solid #e5e7eb;
-      padding: 6px 8px;
-      background: #f9fafb;
-      font-size: 11px;
-      margin-bottom: 6px;
-      color: #374151;
-    }
+        .demo-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
 
-    .assistant-input-row {
-      display: flex;
-      gap: 6px;
-      align-items: center;
-      margin-top: 4px;
-    }
+        .demo-header h3 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #ec4899, #8b5cf6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 15px;
+        }
 
-    .assistant-input {
-      flex: 1;
-      border-radius: 999px;
-      border: 1px solid #d1d5db;
-      padding: 6px 10px;
-      font-size: 11px;
-      outline: none;
-    }
+        .demo-controls {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
 
-    .btn-primary {
-      border-radius: 999px;
-      border: none;
-      background: linear-gradient(to right, var(--avant-blue), var(--avant-teal));
-      color: #ffffff;
-      padding: 6px 12px;
-      font-size: 11px;
-      font-weight: 600;
-      cursor: pointer;
-    }
+        .demo-input {
+            flex: 1;
+            min-width: 250px;
+            padding: 15px 20px;
+            background: var(--bg-darker);
+            border: 2px solid rgba(148, 163, 184, 0.2);
+            border-radius: 10px;
+            color: var(--text-light);
+            font-size: 1rem;
+            transition: all 0.3s;
+        }
 
-    .btn-secondary {
-      border-radius: 999px;
-      border: 1px solid #d1d5db;
-      background: #ffffff;
-      color: #374151;
-      padding: 5px 10px;
-      font-size: 11px;
-      cursor: pointer;
-    }
+        .demo-input:focus {
+            outline: none;
+            border-color: var(--color-smartscan);
+            box-shadow: 0 0 0 3px rgba(236, 72, 153, 0.1);
+        }
 
-    .link-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 6px;
-      margin-top: 8px;
-    }
+        .demo-btn {
+            padding: 15px 35px;
+            background: linear-gradient(135deg, #ec4899, #8b5cf6);
+            border: none;
+            border-radius: 10px;
+            color: white;
+            font-weight: 700;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
 
-    @media (max-width: 640px) {
-      .story-title {
-        font-size: 22px;
-      }
-    }
-  </style>
+        .demo-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(236, 72, 153, 0.4);
+        }
+
+        .demo-results {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .deal-card {
+            background: var(--bg-darker);
+            border-radius: 12px;
+            padding: 20px;
+            border: 1px solid rgba(148, 163, 184, 0.1);
+            transition: all 0.3s;
+        }
+
+        .deal-card:hover {
+            border-color: var(--color-smartscan);
+            transform: translateY(-4px);
+            box-shadow: 0 10px 30px rgba(236, 72, 153, 0.2);
+        }
+
+        .deal-score {
+            display: inline-block;
+            padding: 5px 12px;
+            background: linear-gradient(135deg, #10b981, #059669);
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+
+        .deal-product {
+            font-weight: 700;
+            font-size: 1.1rem;
+            margin-bottom: 8px;
+        }
+
+        .deal-retailer {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-bottom: 12px;
+        }
+
+        .deal-pricing {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 12px;
+        }
+
+        .deal-price-old {
+            text-decoration: line-through;
+            color: var(--text-muted);
+        }
+
+        .deal-price-new {
+            color: var(--color-clinical);
+            font-weight: 700;
+            font-size: 1.2rem;
+        }
+
+        .deal-margin {
+            background: rgba(59, 130, 246, 0.1);
+            padding: 8px;
+            border-radius: 8px;
+            font-size: 0.9rem;
+        }
+
+        /* API Schema Section */
+        .api-schema {
+            background: var(--bg-card);
+            border-radius: 20px;
+            padding: 50px;
+            margin: 60px 0;
+            border: 1px solid rgba(59, 130, 246, 0.2);
+        }
+
+        .endpoint-card {
+            background: var(--bg-darker);
+            border-radius: 12px;
+            padding: 25px;
+            margin-bottom: 20px;
+            border-left: 4px solid var(--color-tech);
+        }
+
+        .endpoint-method {
+            display: inline-block;
+            padding: 4px 12px;
+            background: var(--color-tech);
+            border-radius: 6px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            margin-right: 12px;
+        }
+
+        .endpoint-path {
+            font-family: 'Monaco', 'Courier New', monospace;
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+
+        .code-block {
+            background: #0d1117;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 15px 0;
+            overflow-x: auto;
+            border: 1px solid rgba(148, 163, 184, 0.1);
+        }
+
+        .code-block pre {
+            margin: 0;
+            font-family: 'Monaco', 'Courier New', monospace;
+            font-size: 0.9rem;
+            line-height: 1.6;
+            color: #e6edf3;
+        }
+
+        /* Investor Slides */
+        .slides-container {
+            margin: 60px 0;
+        }
+
+        .slide {
+            background: linear-gradient(135deg, var(--bg-card), var(--bg-darker));
+            border-radius: 20px;
+            padding: 60px;
+            margin-bottom: 30px;
+            border: 1px solid rgba(148, 163, 184, 0.1);
+            min-height: 500px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .slide h2 {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 30px;
+            background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .slide ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .slide li {
+            padding: 15px 0 15px 40px;
+            position: relative;
+            font-size: 1.2rem;
+            line-height: 1.6;
+            color: var(--text-muted);
+        }
+
+        .slide li::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: var(--color-tech);
+            font-weight: 700;
+            font-size: 1.5rem;
+        }
+
+        /* Legend */
+        .legend {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+            margin: 50px 0;
+            padding: 25px;
+            background: rgba(30, 41, 59, 0.5);
+            border-radius: 15px;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-weight: 600;
+        }
+
+        .legend-color {
+            width: 24px;
+            height: 24px;
+            border-radius: 6px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Info Panel */
+        .info-panel {
+            position: fixed;
+            right: -450px;
+            top: 80px;
+            width: 420px;
+            max-height: calc(100vh - 100px);
+            background: linear-gradient(135deg, var(--bg-card), var(--bg-darker));
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
+            transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            overflow-y: auto;
+            z-index: 1500;
+            border: 1px solid rgba(148, 163, 184, 0.2);
+        }
+
+        .info-panel.active {
+            right: 20px;
+        }
+
+        .close-panel {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: rgba(239, 68, 68, 0.1);
+            border: 1px solid rgba(239, 68, 68, 0.3);
+            color: #ef4444;
+            font-size: 1.3rem;
+            cursor: pointer;
+            padding: 8px 15px;
+            border-radius: 8px;
+            transition: all 0.3s;
+        }
+
+        .close-panel:hover {
+            background: rgba(239, 68, 68, 0.2);
+        }
+
+        .info-panel h3 {
+            margin-bottom: 20px;
+            color: var(--color-tech);
+            font-size: 1.8rem;
+            font-weight: 800;
+        }
+
+        .info-panel p {
+            line-height: 1.8;
+            margin-bottom: 20px;
+            color: var(--text-muted);
+        }
+
+        .info-panel ul {
+            margin-left: 20px;
+            line-height: 2;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background: linear-gradient(135deg, #3b82f6, #8b5cf6, #ec4899);
+            padding: 80px 60px;
+            border-radius: 25px;
+            text-align: center;
+            margin: 80px 0;
+            box-shadow: 0 30px 80px rgba(59, 130, 246, 0.4);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.1), transparent 50%);
+            animation: pulse 4s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 0.5; }
+            50% { transform: scale(1.1); opacity: 0.8; }
+        }
+
+        .cta-section h2 {
+            font-size: 3.5rem;
+            font-weight: 900;
+            margin-bottom: 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .cta-section p {
+            font-size: 1.5rem;
+            margin-bottom: 40px;
+            opacity: 0.95;
+            position: relative;
+            z-index: 1;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 18px 50px;
+            background: white;
+            color: #3b82f6;
+            border-radius: 12px;
+            font-weight: 800;
+            text-decoration: none;
+            transition: all 0.3s;
+            font-size: 1.2rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .btn:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 15px 40px rgba(255, 255, 255, 0.4);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header h1 { font-size: 2.5rem; }
+            .section-header h2 { font-size: 2rem; }
+            .ecosystem-viz { height: 700px; padding: 20px; }
+            .node { width: 120px; padding: 12px; }
+            .core-hub { width: 160px; height: 160px; font-size: 1.2rem; }
+            .info-panel { width: 90%; right: -100%; }
+            .info-panel.active { right: 5%; }
+            .nav-links { display: none; }
+            .smartscan-demo, .api-schema, .slide { padding: 30px; }
+        }
+    </style>
 </head>
 <body>
-  <div class="shell">
-    <div class="story-hero" id="top">
-      <div class="topline">Avant Pathfinder × ATOM</div>
-      <h1 class="story-title">A Pathfinder story where the answer arrives before the call ends.</h1>
-      <p class="story-sub">
-        Today, Trusted Advisors walk customers through long IQAs and wait days for research.
-        In the ATOM version of Pathfinder, the system listens with you, thinks with you, and
-        builds the recommendation while you’re still in the room.
-      </p>
-      <div class="story-meta">
-        <span class="story-pill">Concept walkthrough · Not final UI</span>
-        <span>·</span>
-        <span>Designed for Avant product, Pathfinder, and sales leadership.</span>
-      </div>
-      <div class="story-grid">
-        <div class="story-stat">
-          <div class="story-stat-label">IQA Time</div>
-          <div class="story-stat-value">60 → 20–25 min</div>
-          <div class="story-stat-caption">Less form fatigue, more conversation.</div>
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="nav-logo">R.E.A.L</div>
+        <ul class="nav-links">
+            <li><a onclick="scrollToSection('ecosystem')">Ecosystem</a></li>
+            <li><a onclick="scrollToSection('smartscan')">SmartScan</a></li>
+            <li><a onclick="scrollToSection('api')">API</a></li>
+            <li><a onclick="scrollToSection('slides')">Investor Deck</a></li>
+            <li><a onclick="scrollToSection('contact')">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- Header -->
+    <div class="header">
+        <h1>R.E.A.L ECOSYSTEM</h1>
+        <p>AI-Powered National Regenerative Health Platform + Smart Retail Arbitrage Engine</p>
+        <div class="header-badges">
+            <span class="badge">Healthcare AI</span>
+            <span class="badge">Retail Intelligence</span>
+            <span class="badge">$5M → $750M+ Revenue</span>
+            <span class="badge">Multi-Billion Exit</span>
         </div>
-        <div class="story-stat">
-          <div class="story-stat-label">Turnaround</div>
-          <div class="story-stat-value">Days → Minutes</div>
-          <div class="story-stat-caption">Recommendations before you hang up.</div>
-        </div>
-        <div class="story-stat">
-          <div class="story-stat-label">Conversion</div>
-          <div class="story-stat-value">+ 20–25%</div>
-          <div class="story-stat-caption">Modeled uplift with a co‑pilot.</div>
-        </div>
-        <div class="story-stat">
-          <div class="story-stat-label">Advisor Load</div>
-          <div class="story-stat-value">↓</div>
-          <div class="story-stat-caption">Less manual research and orchestration.</div>
-        </div>
-      </div>
     </div>
 
-    <div class="chapters">
-      <button class="chapter-chip active" data-target="scene-1">1. Before & After</button>
-      <button class="chapter-chip" data-target="scene-2">2. Dynamic Matrices</button>
-      <button class="chapter-chip" data-target="scene-3">3. Atlas & Signals</button>
-      <button class="chapter-chip" data-target="scene-4">4. Under the Hood</button>
-      <button class="chapter-chip" data-target="scene-5">5. Roadmap & ROI</button>
-      <button class="chapter-chip" data-target="scene-6">6. Live Examples</button>
-      <button class="chapter-chip" data-target="scene-7">7. Ask ATOM</button>
+    <div class="container">
+        <!-- Stats Grid -->
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-number">$2-5M</div>
+                <div class="stat-label">Series Seed Raise</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">$20-30M</div>
+                <div class="stat-label">Pre-Money Valuation</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">$74-213M</div>
+                <div class="stat-label">Year 3 Revenue</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">$1.2-2.5B</div>
+                <div class="stat-label">10-Year Exit</div>
+            </div>
+        </div>
+
+        <!-- Ecosystem Section -->
+        <div id="ecosystem" class="section-header">
+            <h2>Interactive Ecosystem</h2>
+            <p>Click any node to explore revenue streams and strategic partnerships</p>
+        </div>
+
+        <div class="ecosystem-viz">
+            <div class="orbit orbit-1"></div>
+            <div class="orbit orbit-2"></div>
+            <div class="orbit orbit-3"></div>
+            <div class="orbit orbit-4"></div>
+
+            <div class="core-hub" onclick="showInfo('core')">
+                R.E.A.L<br>PLATFORM
+            </div>
+
+            <!-- Clinical Operations -->
+            <div class="node node-clinical" style="top: 8%; left: 50%; transform: translateX(-50%);" onclick="showInfo('greenville')">
+                <div class="node-title">Greenville Flagship</div>
+                <div class="node-revenue">$4.7-7.1M Y1</div>
+            </div>
+
+            <!-- Technology Platform -->
+            <div class="node node-tech" style="top: 18%; left: 22%;" onclick="showInfo('clinix')">
+                <div class="node-title">Clinix AI SaaS</div>
+                <div class="node-revenue">$11-17M/yr</div>
+            </div>
+
+            <div class="node node-tech" style="top: 18%; right: 22%;" onclick="showInfo('realcost')">
+                <div class="node-title">RealCost Plus Rx</div>
+                <div class="node-revenue">$20M/yr scale</div>
+            </div>
+
+            <!-- SmartScan -->
+            <div class="node node-smartscan" style="top: 50%; left: 8%;" onclick="showInfo('smartscan')">
+                <div class="node-title">SmartScan AI</div>
+                <div class="node-revenue">Arbitrage Engine</div>
+            </div>
+
+            <div class="node node-smartscan" style="top: 50%; right: 8%;" onclick="showInfo('deals')">
+                <div class="node-title">Deal Detection</div>
+                <div class="node-revenue">Real-Time Pricing</div>
+            </div>
+
+            <!-- Enterprise -->
+            <div class="node node-enterprise" style="bottom: 18%; left: 22%;" onclick="showInfo('hca')">
+                <div class="node-title">HCA Healthcare</div>
+                <div class="node-revenue">$75-190M/yr</div>
+            </div>
+
+            <div class="node node-enterprise" style="bottom: 18%; right: 22%;" onclick="showInfo('cvs')">
+                <div class="node-title">CVS Health</div>
+                <div class="node-revenue">Strategic Partner</div>
+            </div>
+
+            <!-- Kentucky Engine -->
+            <div class="node node-kentucky" style="bottom: 8%; left: 50%; transform: translateX(-50%);" onclick="showInfo('realeco')">
+                <div class="node-title">REALECO 2.0</div>
+                <div class="node-revenue">$128M/yr x 5</div>
+            </div>
+        </div>
+
+        <div class="legend">
+            <div class="legend-item">
+                <div class="legend-color" style="background: var(--color-clinical);"></div>
+                <span>Clinical Operations</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-color" style="background: var(--color-tech);"></div>
+                <span>Technology Platform</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-color" style="background: var(--color-smartscan);"></div>
+                <span>SmartScan Engine</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-color" style="background: var(--color-enterprise);"></div>
+                <span>Enterprise</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-color" style="background: var(--color-kentucky);"></div>
+                <span>Kentucky Engine</span>
+            </div>
+        </div>
+
+        <!-- SmartScan Demo -->
+        <div id="smartscan" class="smartscan-demo">
+            <div class="demo-header">
+                <h3>SmartScan AI Demo</h3>
+                <p style="color: var(--text-muted); font-size: 1.1rem;">Retail arbitrage intelligence powered by Perplexity API</p>
+            </div>
+
+            <div class="demo-controls">
+                <input type="text" class="demo-input" id="scanQuery" placeholder="Enter product (e.g., Nike Air Force 1, Meta Quest 3)" value="Nike Air Force 1">
+                <button class="demo-btn" onclick="runSmartScan()">🔍 Scan Deals</button>
+            </div>
+
+            <div class="demo-results" id="demoResults">
+                <!-- Results populated by JS -->
+            </div>
+        </div>
+
+        <!-- API Schema -->
+        <div id="api" class="api-schema">
+            <div class="section-header">
+                <h2>SmartScan API Schema</h2>
+                <p>RESTful API for retail arbitrage intelligence</p>
+            </div>
+
+            <div class="endpoint-card">
+                <span class="endpoint-method">POST</span>
+                <span class="endpoint-path">/api/v1/scan/products</span>
+                <p style="margin-top: 15px; color: var(--text-muted);">Scan multiple retailers for a specific product and return deal opportunities above threshold</p>
+                
+                <div class="code-block">
+<pre>{
+  "query": "Nike Air Force 1 size 10",
+  "categories": ["sneakers"],
+  "min_discount_pct": 30,
+  "min_margin_pct": 20,
+  "max_price": 150,
+  "retailers": ["nike.com", "footlocker.com", "amazon.com"]
+}</pre>
+                </div>
+
+                <p style="margin-top: 15px; color: var(--text-muted);"><strong>Response:</strong></p>
+                <div class="code-block">
+<pre>{
+  "scan_id": "scan_abc123",
+  "query": "Nike Air Force 1 size 10",
+  "results": [
+    {
+      "product_id": "nike_af1_white_10",
+      "title": "Nike Air Force 1 '07 White",
+      "retailer": "footlocker.com",
+      "current_price": 79.99,
+      "typical_price": 110.00,
+      "discount_pct": 27.3,
+      "estimated_margin_pct": 22.5,
+      "deal_score": 87,
+      "url": "https://...",
+      "availability": "in_stock"
+    }
+  ]
+}</pre>
+                </div>
+            </div>
+
+            <div class="endpoint-card">
+                <span class="endpoint-method">GET</span>
+                <span class="endpoint-path">/api/v1/deals/live</span>
+                <p style="margin-top: 15px; color: var(--text-muted);">Stream live deal opportunities above threshold across all monitored categories</p>
+                
+                <div class="code-block">
+<pre>GET /api/v1/deals/live?category=sneakers&min_score=80&limit=50</pre>
+                </div>
+            </div>
+
+            <div class="endpoint-card">
+                <span class="endpoint-method">POST</span>
+                <span class="endpoint-path">/api/v1/inventory/purchase</span>
+                <p style="margin-top: 15px; color: var(--text-muted);">Execute automated purchase for approved deal opportunities</p>
+                
+                <div class="code-block">
+<pre>{
+  "deal_id": "deal_xyz789",
+  "quantity": 10,
+  "max_unit_price": 80.00,
+  "auto_approve": false
+}</pre>
+                </div>
+            </div>
+
+            <div class="endpoint-card">
+                <span class="endpoint-method">GET</span>
+                <span class="endpoint-path">/api/v1/pricing/dynamic</span>
+                <p style="margin-top: 15px; color: var(--text-muted);">Get dynamic pricing recommendations for inventory based on market conditions</p>
+            </div>
+        </div>
+
+        <!-- Investor Slides -->
+        <div id="slides" class="slides-container">
+            <div class="section-header">
+                <h2>Investor Deck</h2>
+                <p>10-slide pitch for R.E.A.L SmartScan Arbitrage Engine</p>
+            </div>
+
+            <div class="slide">
+                <h2>1. The Problem</h2>
+                <ul>
+                    <li>$5.7 trillion retail market with massive price inefficiencies</li>
+                    <li>Manual arbitrage is time-intensive and capital-constrained</li>
+                    <li>DealNews model drives traffic but doesn't capture the spread</li>
+                    <li>Existing tools (Keepa, Tactical Arbitrage) require human decision-making</li>
+                </ul>
+            </div>
+
+            <div class="slide">
+                <h2>2. The Solution</h2>
+                <ul>
+                    <li>SmartScan AI: Perplexity-powered retail arbitrage engine</li>
+                    <li>Automated deal detection across 1000+ retailers</li>
+                    <li>Dynamic threshold scoring (discount %, margin %, demand signals)</li>
+                    <li>Programmatic purchasing + dynamic repricing</li>
+                    <li>Capital flywheel: profits → larger POs → better terms → exclusives</li>
+                </ul>
+            </div>
+
+            <div class="slide">
+                <h2>3. Market Opportunity</h2>
+                <ul>
+                    <li>Online arbitrage market: $50B+ annually</li>
+                    <li>Amazon FBA sellers: 2M+ active, 89% use manual sourcing</li>
+                    <li>Retail liquidation market: $644B annually</li>
+                    <li>Our TAM: Automated sourcing for resellers + direct-to-consumer</li>
+                </ul>
+            </div>
+
+            <div class="slide">
+                <h2>4. Business Model</h2>
+                <ul>
+                    <li><strong>SaaS Layer:</strong> $99-499/mo for SmartScan API access</li>
+                    <li><strong>Inventory Capital:</strong> Buy underpriced inventory, resell at market</li>
+                    <li><strong>Marketplace Fees:</strong> 5-10% on GMV through R.E.A.L Deals platform</li>
+                    <li><strong>Data Licensing:</strong> Price intelligence to brands/retailers</li>
+                </ul>
+            </div>
+
+            <div class="slide">
+                <h2>5. Unit Economics</h2>
+                <ul>
+                    <li><strong>Average Deal:</strong> $80 cost → $120 resale = $40 gross profit</li>
+                    <li><strong>Margin:</strong> 30-35% after fees, shipping, storage</li>
+                    <li><strong>Inventory Turn:</strong> 30-45 days average</li>
+                    <li><strong>Capital Efficiency:</strong> $100K → $400K annual profit (4x ROIC)</li>
+                </ul>
+            </div>
+
+            <div class="slide">
+                <h2>6. Technology Stack</h2>
+                <ul>
+                    <li><strong>Discovery:</strong> Perplexity API + custom scrapers</li>
+                    <li><strong>Normalization:</strong> UPC/EAN/ASIN matching engine</li>
+                    <li><strong>Scoring:</strong> ML model (discount, margin, velocity, risk)</li>
+                    <li><strong>Execution:</strong> Automated purchase bots + dynamic pricing</li>
+                    <li><strong>Infrastructure:</strong> Antimatter AI compute layer</li>
+                </ul>
+            </div>
+
+            <div class="slide">
+                <h2>7. Competitive Advantages</h2>
+                <ul>
+                    <li><strong>Data Moat:</strong> Proprietary price history + demand signals</li>
+                    <li><strong>Speed:</strong> Real-time detection vs manual monitoring</li>
+                    <li><strong>Scale:</strong> 10,000+ SKUs scanned per hour</li>
+                    <li><strong>Capital Flywheel:</strong> Profits fund larger purchases → better terms</li>
+                    <li><strong>Network Effects:</strong> More volume → better wholesale access</li>
+                </ul>
+            </div>
+
+            <div class="slide">
+                <h2>8. Go-to-Market Strategy</h2>
+                <ul>
+                    <li><strong>Phase 1 (Months 1-6):</strong> Sneakers + consumer electronics</li>
+                    <li><strong>Phase 2 (Months 6-12):</strong> Health/wellness equipment (synergy with R.E.A.L clinics)</li>
+                    <li><strong>Phase 3 (Year 2):</strong> Expand to 10+ verticals</li>
+                    <li><strong>Phase 4 (Year 3):</strong> White-label for enterprise retailers</li>
+                </ul>
+            </div>
+
+            <div class="slide">
+                <h2>9. Financial Projections</h2>
+                <ul>
+                    <li><strong>Year 1:</strong> $2-5M revenue (1,000 deals/month @ 30% margin)</li>
+                    <li><strong>Year 2:</strong> $15-30M revenue (5,000 deals/month + SaaS layer)</li>
+                    <li><strong>Year 3:</strong> $50-100M revenue (wholesale partnerships + marketplace)</li>
+                    <li><strong>Exit:</strong> $200-500M acquisition by Amazon, Walmart, or DoorDash</li>
+                </ul>
+            </div>
+
+            <div class="slide">
+                <h2>10. Investment Ask</h2>
+                <ul>
+                    <li><strong>Raising:</strong> $1-3M Seed Round</li>
+                    <li><strong>Use of Funds:</strong> 60% inventory capital, 30% tech development, 10% ops</li>
+                    <li><strong>Valuation:</strong> $8-12M pre-money</li>
+                    <li><strong>Milestones:</strong> 10,000 deals executed, $5M revenue run rate, Series A ready</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- CTA -->
+        <div id="contact" class="cta-section">
+            <h2>Join the Revolution</h2>
+            <p>We're building the future of healthcare + retail intelligence</p>
+            <a href="mailto:invest@realecosystem.com" class="btn">Schedule Investor Call</a>
+        </div>
     </div>
 
-    <!-- Scene 1 -->
-    <section id="scene-1" class="section">
-      <div class="section-header">
-        <div class="section-kicker">Scene 1 · The Moment of Truth</div>
-        <h2 class="section-title">Pathfinder today vs Pathfinder with ATOM</h2>
-        <p class="section-sub">
-          Same Trusted Advisor, same customer, same hour. Completely different experience.
-        </p>
-      </div>
-
-      <div class="two-col">
-        <div>
-          <div class="story-block-title">Today’s story</div>
-          <p class="step"><span>1.</span> Advisor opens Pathfinder and walks through a 60+ minute IQA.</p>
-          <p class="step"><span>2.</span> The submission vanishes into a 3–5 day engineering queue.</p>
-          <p class="step"><span>3.</span> Someone spends 2–4 hours researching providers and rebuilding a matrix.</p>
-          <p class="step"><span>4.</span> A static PDF and recommendation appear in the advisor’s inbox.</p>
-          <p class="step"><span>5.</span> The advisor tries to re‑ignite the customer conversation days later.</p>
+    <!-- Info Panel -->
+    <div class="info-panel" id="infoPanel">
+        <button class="close-panel" onclick="closeInfo()">✕</button>
+        <div id="infoPanelContent">
+            <h3>Select a node</h3>
+            <p>Click any component in the ecosystem to see detailed information</p>
         </div>
-        <div>
-          <div class="story-block-title">The ATOM story</div>
-          <p class="step"><span>1.</span> As the IQA starts, ATOM quietly begins listening and structuring the session.</p>
-          <p class="step"><span>2.</span> A small side panel surfaces next questions, phrasing, and objections.</p>
-          <p class="step"><span>3.</span> Dynamic Matrices fill in and re‑rank in real time as answers land.</p>
-          <p class="step"><span>4.</span> By minute 25, a ranked recommendation and story arc are already drafted.</p>
-          <p class="step"><span>5.</span> The call ends with a clear path and a customer‑ready artifact, not a todo.</p>
-        </div>
-      </div>
-    </section>
+    </div>
 
-    <!-- Scene 2 -->
-    <section id="scene-2" class="section">
-      <div class="section-header">
-        <div class="section-kicker">Scene 2 · The Living Matrix</div>
-        <h2 class="section-title">Dynamic Matrices that move with the conversation</h2>
-        <p class="section-sub">
-          Think of Dynamic Matrices as the shared “table” everyone is gathered around – except the table
-          updates itself as requirements change.
-        </p>
-      </div>
+    <script>
+        // Info Panel Data
+        const nodeInfo = {
+            core: {
+                title: 'R.E.A.L Platform Core',
+                content: `
+                    <h3>The AI-Powered Operating System</h3>
+                    <p><strong>Dual Revenue Engines:</strong></p>
+                    <ul style="margin-left: 20px; color: var(--text-muted);">
+                        <li>Healthcare AI (Clinix AI, RealCost Plus Rx)</li>
+                        <li>Retail Intelligence (SmartScan Arbitrage)</li>
+                    </ul>
+                    <p><strong>7 Revenue Streams:</strong> Clinical operations, SaaS licensing, pharmacy routing, pharma data, enterprise platforms, arbitrage profits, federal funding participation</p>
+                    <p style="margin-top: 20px; padding: 15px; background: rgba(59, 130, 246, 0.1); border-radius: 8px;">
+                        <strong>Investment Ask:</strong> $2-5M Series Seed at $20-30M pre-money valuation
+                    </p>
+                `
+            },
+            smartscan: {
+                title: 'SmartScan AI Engine',
+                content: `
+                    <h3>Retail Arbitrage Intelligence</h3>
+                    <p><strong>Technology:</strong> Perplexity API + custom ML models for real-time deal detection</p>
+                    <p><strong>Process:</strong></p>
+                    <ol style="margin-left: 20px; color: var(--text-muted);">
+                        <li>Scan 1000+ retailers for price inefficiencies</li>
+                        <li>Score deals by discount %, margin %, demand signals</li>
+                        <li>Auto-purchase items above threshold</li>
+                        <li>Dynamic repricing for resale</li>
+                    </ol>
+                    <p><strong>Unit Economics:</strong> $80 avg cost → $120 resale = 30-35% margin after fees</p>
+                    <p><strong>Scale:</strong> 10,000+ SKUs scanned per hour, 1,000+ deals/month target</p>
+                `
+            },
+            deals: {
+                title: 'Deal Detection System',
+                content: `
+                    <h3>Real-Time Price Intelligence</h3>
+                    <p><strong>Threshold Criteria:</strong></p>
+                    <ul style="margin-left: 20px; color: var(--text-muted);">
+                        <li>Discount ≥ 30% vs typical price</li>
+                        <li>Gross margin ≥ 20% after fees</li>
+                        <li>Demand signals (search volume, sales velocity)</li>
+                        <li>Availability ≥ 10 units for bulk purchase</li>
+                    </ul>
+                    <p><strong>Data Sources:</strong> Keepa history, Amazon rank, Google Trends, Perplexity meta-search</p>
+                    <p><strong>Speed Advantage:</strong> Detect deals in real-time vs manual 24-48 hour lag</p>
+                `
+            },
+            greenville: {
+                title: 'Greenville HUBZone Flagship',
+                content: `
+                    <h3>Proof-of-Concept Clinic</h3>
+                    <p><strong>Revenue:</strong> $4.7-7.1M Year 1</p>
+                    <p><strong>Format:</strong> 2,500 SF clinic + 6 mobile PT vans</p>
+                    <p><strong>Technology Integration:</strong> Clinix AI beta deployment generating proof data for enterprise sales</p>
+                    <p><strong>Strategic Value:</strong> Every patient encounter = demo for Owensboro Health pitch</p>
+                `
+            },
+            clinix: {
+                title: 'Clinix AI SaaS',
+                content: `
+                    <h3>Healthcare Documentation AI</h3>
+                    <p><strong>Revenue:</strong> $11-17M/yr at 100 clinics</p>
+                    <p><strong>Pricing:</strong> $500-1,000/mo + 5% billing vs 7-9% industry</p>
+                    <p><strong>Value:</strong> 40% time savings for providers, <5% denial rate</p>
+                    <p><strong>Margin:</strong> 80-85% (SaaS economics)</p>
+                `
+            },
+            realcost: {
+                title: 'RealCost Plus Rx',
+                content: `
+                    <h3>Pharmacy Routing Intelligence</h3>
+                    <p><strong>Revenue:</strong> $20M/yr at scale (5% of $400M routed)</p>
+                    <p><strong>Model:</strong> Compare Cost Plus Drugs, CVS, Amazon Pharmacy, SmithRx</p>
+                    <p><strong>Strategic Moat:</strong> CVS sees R.E.A.L as transparent routing layer driving pharmacy traffic</p>
+                `
+            },
+            hca: {
+                title: 'HCA Healthcare',
+                content: `
+                    <h3>Enterprise Partnership Target</h3>
+                    <p><strong>Revenue Potential:</strong> $75-190M/yr (2-5% of $75.6B outpatient)</p>
+                    <p><strong>Deployment:</strong> 2,500+ outpatient facilities</p>
+                    <p><strong>Pitch:</strong> "100 clinics already using it with 40% time savings. Deploy at your 2,500 facilities tomorrow."</p>
+                `
+            },
+            cvs: {
+                title: 'CVS Health Ventures',
+                content: `
+                    <h3>Strategic Pharmacy Partner</h3>
+                    <p><strong>Layers:</strong> CVS Pharmacy, Caremark PBM, Aetna, MinuteClinic</p>
+                    <p><strong>Alignment:</strong> R.E.A.L transparent routing drives CVS traffic while comparing Cost Plus</p>
+                    <p><strong>Investment Opportunity:</strong> CVS Health Ventures strategic stake in Series A</p>
+                `
+            },
+            realeco: {
+                title: 'REALECO 2.0',
+                content: `
+                    <h3>Kentucky Regenerative Engine</h3>
+                    <p><strong>Total Funding:</strong> ~$128.25M/yr x 5 years</p>
+                    <p><strong>R.E.A.L Share:</strong> 10-20% tech fees = $12.8-25.6M/yr</p>
+                    <p><strong>Programs:</strong> NSF Quantum, RISE Interactive, Methane Harvester, Data Center, Bioplastics</p>
+                    <p style="background: rgba(239, 68, 68, 0.1); padding: 12px; border-radius: 8px; margin-top: 15px;">
+                        <strong>URGENT:</strong> NSF deadline approaching
+                    </p>
+                `
+            }
+        };
 
-      <table class="table">
-        <thead>
-          <tr>
-            <th>Capability</th>
-            <th>Today</th>
-            <th>With ATOM</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>How it’s built</td>
-            <td>Manually, after the call</td>
-            <td>Auto‑populated during the call from IQA answers and signals</td>
-          </tr>
-          <tr>
-            <td>Ranking providers</td>
-            <td>Static per submission</td>
-            <td>Re‑ranks in real time when needs change</td>
-          </tr>
-          <tr>
-            <td>Explaining the scores</td>
-            <td>Depends on who has time to write</td>
-            <td>Every score has a “why” behind it and a source to show</td>
-          </tr>
-          <tr>
-            <td>Deliverables</td>
-            <td>One‑off docs built by hand</td>
-            <td>Advisor and customer versions published automatically</td>
-          </tr>
-        </tbody>
-      </table>
-
-      <div class="cards">
-        <div class="card-sm">
-          <div class="card-sm-title">Auto‑population</div>
-          <p>
-            The moment an IQA answer is captured, the matrix begins to fill in: providers appear,
-            scores are assigned, and obvious mismatches drop away.
-          </p>
-        </div>
-        <div class="card-sm">
-          <div class="card-sm-title">Live re‑ranking</div>
-          <p>
-            A new compliance requirement, a budget guardrail, a deployment preference – mention it,
-            and the matrix reshuffles so the top row always matches the true ask.
-          </p>
-        </div>
-        <div class="card-sm">
-          <div class="card-sm-title">Explainable by design</div>
-          <p>
-            Click into any cell and you see the logic: requirements, provider facts, and supporting
-            documentation. Nothing is “just because the AI said so.”
-          </p>
-        </div>
-      </div>
-
-      <p class="note" style="margin-top:6px;">
-        Want to feel this pattern in your hands? Open a live Dynamic Matrix: <a href="https://www.antimatterai.com/resources/vendor-matrix" target="_blank">AI Vendor Matrix</a>.
-      </p>
-    </section>
-
-    <!-- Scene 3 -->
-    <section id="scene-3" class="section">
-      <div class="section-header">
-        <div class="section-kicker">Scene 3 · The World Is Big</div>
-        <h2 class="section-title">Atlas, IntenIQ, and global data center decisions</h2>
-        <p class="section-sub">
-          Data center deals are where complexity spikes: geography, power, latency, regulation.
-          Atlas and IntenIQ give ATOM Pathfinder‑ready instincts in this landscape.
-        </p>
-      </div>
-
-      <div class="cards">
-        <div class="card-sm">
-          <div class="card-sm-title">Atlas as the map</div>
-          <p>
-            Atlas knows who does what, and where, around the world. ATOM turns Pathfinder IQA answers into
-            precise Atlas queries – no more wrestling with filters mid‑call.
-          </p>
-        </div>
-        <div class="card-sm">
-          <div class="card-sm-title">IntenIQ as the signal layer</div>
-          <p>
-            IntenIQ watches for intent: urgency, risk sensitivity, appetite for change. Those signals
-            help re‑weight providers and guide how the advisor frames the story.
-          </p>
-        </div>
-        <div class="card-sm">
-          <div class="card-sm-title">“Ask Atlas” as the voice</div>
-          <p>
-            Instead of “let me get back to you,” advisors can ask Atlas questions in plain language –
-            and get structured answers they can read aloud and show on screen.
-          </p>
-        </div>
-      </div>
-
-      <p class="note" style="margin-top:6px;">
-        See these ideas live:
-        <a href="https://www.antimatterai.com/resources/channel-partners" target="_blank">Trusted Advisor Assistant</a>,
-        <a href="https://www.antimatterai.com/atom-intentiq" target="_blank">IntenIQ</a>.
-      </p>
-    </section>
-
-    <!-- Scene 4 -->
-    <section id="scene-4" class="section">
-      <div class="section-header">
-        <div class="section-kicker">Scene 4 · Under the Hood</div>
-        <h2 class="section-title">Pathfinder stays the system of record. ATOM becomes the brain.</h2>
-        <p class="section-sub">
-          The architecture is simple on purpose: Pathfinder owns the workflow and data; ATOM adds an
-          evidence‑first, session‑centric intelligence layer.
-        </p>
-      </div>
-
-      <div class="cards">
-        <div class="card-sm">
-          <div class="card-sm-title">Pathfinder</div>
-          <p>
-            Handles log‑in, IQA configuration, submissions, routing, and UI – the front door and
-            the record of everything that happens.
-          </p>
-        </div>
-        <div class="card-sm">
-          <div class="card-sm-title">ATOM services</div>
-          <p>
-            Listen to IQAs and calls, normalize them, retrieve the right provider facts, score
-            fit, coach the advisor, and assemble artifacts in the background.
-          </p>
-        </div>
-        <div class="card-sm">
-          <div class="card-sm-title">Knowledge & providers</div>
-          <p>
-            Provider profiles, Dynamic Matrices, Atlas data, case studies, and compliance details
-            live as a governed knowledge base – the ground truth ATOM references.
-          </p>
-        </div>
-        <div class="card-sm">
-          <div class="card-sm-title">Security & control</div>
-          <p>
-            Encryption, roles, audit, and redaction follow familiar enterprise patterns. ATOM
-            plugs into what Avant already does well, instead of inventing a new island.
-          </p>
-        </div>
-      </div>
-
-      <p class="note">
-        Underneath, this is powered by the same ATOM agentic platform Antimatter uses for other
-        enterprises: <a href="https://www.antimatterai.com/agentic-ai" target="_blank">Agentic AI</a>.
-      </p>
-    </section>
-
-    <!-- Scene 5 -->
-    <section id="scene-5" class="section">
-      <div class="section-header">
-        <div class="section-kicker">Scene 5 · From Pilot to Habit</div>
-        <h2 class="section-title">Roadmap and the shape of the business case</h2>
-        <p class="section-sub">
-          The point is not to launch “AI” – it’s to change how Pathfinder feels to advisors and customers
-          in a matter of weeks, then scale what works.
-        </p>
-      </div>
-
-      <table class="table">
-        <thead>
-          <tr>
-            <th>Phase</th>
-            <th>What you’d see</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>0–1 · Discovery & foundation</td>
-            <td>One pilot category chosen, schemas agreed, Pathfinder and ATOM talking to each other.</td>
-          </tr>
-          <tr>
-            <td>2 · First ATOM‑powered IQA</td>
-            <td>An end‑to‑end experience in a single category: coaching panel, Dynamic Matrix, and <5‑minute recommendation.</td>
-          </tr>
-          <tr>
-            <td>3–4 · Live sessions & more categories</td>
-            <td>Browser sessions with live guidance, “Ask the Matrix/Atlas,” and a repeatable pattern across 3–5 categories.</td>
-          </tr>
-          <tr>
-            <td>5 · Pathfinder, but upgraded</td>
-            <td>Core Pathfinder categories running with ATOM, plus the dashboards that show it’s working.</td>
-          </tr>
-        </tbody>
-      </table>
-
-      <div class="cards">
-        <div class="card-sm">
-          <div class="card-sm-title">Why this is worth it</div>
-          <p>
-            The math is straightforward: shorter IQAs, fewer research hours, and higher close rates
-            stack into eight‑figure annual value in a 100‑rep, multi‑IQA‑per‑week model.
-          </p>
-        </div>
-        <div class="card-sm">
-          <div class="card-sm-title">Why this is safe</div>
-          <p>
-            Facts stay grounded in provider data and documents, coaching is gated by confidence,
-            and ATOM is wired to tolerate imperfect data instead of denying reality.
-          </p>
-        </div>
-      </div>
-    </section>
-
-    <!-- Scene 6 -->
-    <section id="scene-6" class="section">
-      <div class="section-header">
-        <div class="section-kicker">Scene 6 · Proof It’s Real</div>
-        <h2 class="section-title">What ATOM already does today</h2>
-        <p class="section-sub">
-          Pathfinder × ATOM isn’t a theory. It’s a recombination of pieces that already exist.
-        </p>
-      </div>
-
-      <div class="cards">
-        <a class="card-sm" href="https://www.antimatterai.com/resources/vendor-matrix" target="_blank">
-          <div class="card-sm-title">AI Vendor Matrix</div>
-          <p>
-            Interactive Dynamic Matrix comparing enterprise AI platforms – a direct preview of the
-            Pathfinder matrix experience.
-          </p>
-        </a>
-        <a class="card-sm" href="https://www.antimatterai.com/resources/channel-partners" target="_blank">
-          <div class="card-sm-title">Trusted Advisor Assistant</div>
-          <p>
-            Channel‑focused assistant that mirrors how ATOM can coach Pathfinder Trusted Advisors.
-          </p>
-        </a>
-        <a class="card-sm" href="https://www.antimatterai.com/atom-intentiq" target="_blank">
-          <div class="card-sm-title">IntenIQ</div>
-          <p>
-            Real‑time intent and signal engine, shaping which providers rise to the top and how
-            the story is told.
-          </p>
-        </a>
-        <a class="card-sm" href="https://www.antimatterai.com/agentic-ai" target="_blank">
-          <div class="card-sm-title">ATOM Agentic Platform</div>
-          <p>
-            The full “black box” ATOM stack that this Pathfinder concept is built on.
-          </p>
-        </a>
-      </div>
-    </section>
-
-    <!-- Scene 7 -->
-    <section id="scene-7" class="section">
-      <div class="section-header">
-        <div class="section-kicker">Scene 7 · Ask the Story</div>
-        <h2 class="section-title">Ask ATOM about Pathfinder</h2>
-        <p class="section-sub">
-          Use this panel the way an exec might: to sanity‑check the story, stress‑test the value,
-          and understand what changes on day one.
-        </p>
-      </div>
-
-      <div id="assistantTranscript" class="assistant-box">
-        <div><strong>ATOM:</strong> Ask me what changes for advisors, how Dynamic Matrices actually behave, or how this becomes real inside Pathfinder.</div>
-      </div>
-
-      <div class="assistant-input-row">
-        <input
-          id="assistantInput"
-          class="assistant-input"
-          type="text"
-          placeholder="e.g. What’s the first thing advisors would notice?"
-        />
-        <button class="btn-primary" id="assistantSendBtn">Ask ATOM</button>
-      </div>
-
-      <div class="link-row">
-        <button class="btn-secondary" onclick="window.open('https://www.antimatterai.com/resources/vendor-matrix','_blank')">
-          See Dynamic Matrix live
-        </button>
-        <button class="btn-secondary" onclick="window.open('https://www.antimatterai.com/resources/channel-partners','_blank')">
-          Try Trusted Advisor Assistant
-        </button>
-        <button class="btn-secondary" onclick="window.open('https://www.antimatterai.com/atom-intentiq','_blank')">
-          Explore IntenIQ
-        </button>
-        <button class="btn-secondary" onclick="window.open('https://www.antimatterai.com/agentic-ai','_blank')">
-          View ATOM platform
-        </button>
-      </div>
-    </section>
-  </div>
-
-  <script>
-    // Chapter navigation
-    document.querySelectorAll('.chapter-chip').forEach((chip) => {
-      chip.addEventListener('click', () => {
-        const id = chip.dataset.target;
-        if (!id) return;
-        document.querySelectorAll('.chapter-chip').forEach((c) => c.classList.remove('active'));
-        chip.classList.add('active');
-        const section = document.getElementById(id);
-        if (section) {
-          section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        function showInfo(nodeId) {
+            const panel = document.getElementById('infoPanel');
+            const content = document.getElementById('infoPanelContent');
+            const info = nodeInfo[nodeId];
+            
+            if (info) {
+                content.innerHTML = info.content;
+                panel.classList.add('active');
+            }
         }
-      });
-    });
 
-    // Executive overview metrics toggle (simplified)
-    const metricsGrid = document.getElementById('metricsGrid');
-    const states = {
-      today: [
-        { label: 'IQA completion', value: '≈ 60 min', caption: 'Long forms; energy drifts.' },
-        { label: 'Turnaround', value: '3–5 days', caption: 'Research lives in a queue.' },
-        { label: 'Conversion', value: 'Baseline', caption: 'Heavily rep‑dependent.' },
-        { label: 'Advisor load', value: 'High', caption: 'Research + orchestration.' }
-      ],
-      atom: [
-        { label: 'IQA completion', value: '20–25 min', caption: 'Shorter, more natural.' },
-        { label: 'Turnaround', value: '< 5 minutes', caption: 'Answer while you’re there.' },
-        { label: 'Conversion', value: '+ 20–25%', caption: 'Better timing + story.' },
-        { label: 'Advisor load', value: 'Lower', caption: 'System does heavy lifting.' }
-      ]
-    };
+        function closeInfo() {
+            document.getElementById('infoPanel').classList.remove('active');
+        }
 
-    function renderMetrics(stateKey) {
-      if (!metricsGrid) return;
-      metricsGrid.innerHTML = '';
-      states[stateKey].forEach((m) => {
-        const div = document.createElement('div');
-        div.className = 'story-stat';
-        div.innerHTML = `
-          <div class="story-stat-label">${m.label}</div>
-          <div class="story-stat-value">${m.value}</div>
-          <div class="story-stat-caption">${m.caption}</div>
-        `;
-        metricsGrid.appendChild(div);
-      });
-    }
+        function scrollToSection(id) {
+            document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
+        }
 
-    // Reuse hero stats area as metric canvas
-    const heroStats = document.querySelector('.story-grid');
-    heroStats.id = 'metricsGrid';
-    renderMetrics('today');
+        // SmartScan Demo
+        function runSmartScan() {
+            const query = document.getElementById('scanQuery').value;
+            const resultsDiv = document.getElementById('demoResults');
+            
+            // Show loading state
+            resultsDiv.innerHTML = '<p style="text-align: center; color: var(--text-muted); padding: 40px;">🔍 Scanning retailers for best deals...</p>';
+            
+            // Simulate API call with demo data
+            setTimeout(() => {
+                const demoDeals = [
+                    {
+                        score: 92,
+                        product: 'Nike Air Force 1 \'07 White',
+                        retailer: 'Foot Locker',
+                        oldPrice: 110,
+                        newPrice: 79.99,
+                        margin: '$28 profit (35%)',
+                        discount: 27
+                    },
+                    {
+                        score: 88,
+                        product: 'Nike Air Force 1 Low Black',
+                        retailer: 'Champs Sports',
+                        oldPrice: 110,
+                        newPrice: 84.99,
+                        margin: '$22 profit (26%)',
+                        discount: 23
+                    },
+                    {
+                        score: 85,
+                        product: 'Nike Air Force 1 React White',
+                        retailer: 'Nike.com',
+                        oldPrice: 130,
+                        newPrice: 89.97,
+                        margin: '$32 profit (36%)',
+                        discount: 31
+                    },
+                    {
+                        score: 81,
+                        product: 'Nike Air Force 1 Shadow',
+                        retailer: 'Finish Line',
+                        oldPrice: 120,
+                        newPrice: 89.99,
+                        margin: '$24 profit (27%)',
+                        discount: 25
+                    }
+                ];
+                
+                resultsDiv.innerHTML = demoDeals.map(deal => `
+                    <div class="deal-card">
+                        <div class="deal-score">Score: ${deal.score}</div>
+                        <div class="deal-product">${deal.product}</div>
+                        <div class="deal-retailer">📍 ${deal.retailer}</div>
+                        <div class="deal-pricing">
+                            <span class="deal-price-old">$${deal.oldPrice}</span>
+                            <span class="deal-price-new">$${deal.newPrice}</span>
+                        </div>
+                        <div class="deal-margin">💰 ${deal.margin}</div>
+                    </div>
+                `).join('');
+            }, 1500);
+        }
 
-    const toggleGroup = document.createElement('div');
-    toggleGroup.style.display = 'inline-flex';
-    toggleGroup.style.borderRadius = '999px';
-    toggleGroup.style.border = '1px solid #d1d5db';
-    toggleGroup.style.overflow = 'hidden';
-    toggleGroup.style.fontSize = '10px';
-    toggleGroup.style.marginTop = '8px';
+        // Auto-run demo on load
+        setTimeout(runSmartScan, 1000);
 
-    toggleGroup.innerHTML = `
-      <button type="button" data-state="today" style="padding:4px 9px;border:none;background:#2563eb;color:#ffffff;font-weight:600;cursor:pointer;">Today</button>
-      <button type="button" data-state="atom" style="padding:4px 9px;border:none;background:transparent;color:#6b7280;cursor:pointer;">With ATOM</button>
-    `;
-    document.querySelector('.story-hero').appendChild(toggleGroup);
-
-    toggleGroup.addEventListener('click', (e) => {
-      const btn = e.target.closest('button');
-      if (!btn) return;
-      const state = btn.dataset.state;
-      if (!state) return;
-      const [b1, b2] = toggleGroup.querySelectorAll('button');
-      if (state === 'today') {
-        b1.style.background = '#2563eb'; b1.style.color = '#ffffff'; b1.style.fontWeight = '600';
-        b2.style.background = 'transparent'; b2.style.color = '#6b7280'; b2.style.fontWeight = '400';
-      } else {
-        b2.style.background = '#2563eb'; b2.style.color = '#ffffff'; b2.style.fontWeight = '600';
-        b1.style.background = 'transparent'; b1.style.color = '#6b7280'; b1.style.fontWeight = '400';
-      }
-      renderMetrics(state);
-    });
-
-    // Assistant
-    const qaPairs = [
-      {
-        q: /advisor|trusted advisor|rep|seller/i,
-        a:
-          "For a Trusted Advisor, the biggest change is emotional, not technical. Pathfinder stops feeling like a long intake followed by a black‑box wait. During the call, the system quietly lines up what to ask, what to show, and who is most likely to fit. When the customer says “what would you recommend?”, the advisor already has a clear, evidence‑backed answer instead of “let me get back to you.”"
-      },
-      {
-        q: /dynamic matrix|dynamic matrices|matrix/i,
-        a:
-          "Dynamic Matrices become the shared table in the room. As you gather requirements, the table fills in with providers and scores; as new needs emerge, the rows reshuffle. You can click into any cell and say “here’s exactly why this provider scores high on security and low on geographic coverage.” Then, when the call ends, Pathfinder has both an internal and customer version ready to go."
-      },
-      {
-        q: /atlas|data center|datacenter/i,
-        a:
-          "Atlas is how Pathfinder × ATOM stays credible in the most complex, global deals. Instead of clicking through filters under pressure, the advisor just asks real questions: who can do this in this region, with this certification, at this density. ATOM translates that into Atlas queries, applies hard filters first, and feeds the best candidates straight into Dynamic Matrices."
-      },
-      {
-        q: /roi|value|uplift|business case/i,
-        a:
-          "The story in numbers is simple: shorter IQAs, less research, better timing, and clearer recommendations. That combination increases how many opportunities get to “yes”, and how fast. In a 100‑rep environment, even modest improvements in close rate and cycle time compound into eight‑figure annual value, with a payback measured in quarters, not years."
-      },
-      {
-        q: /risk|hallucination|trust|adoption|fatigue/i,
-        a:
-          "Trust and adoption are solved in the design. Facts come from tables and documents that advisors already recognize; the model explains them, it doesn’t invent them. Signals are gated by confidence and can be turned down if advisors prefer a quieter co‑pilot. And the whole system assumes incomplete data at the start, improving as Pathfinder and Atlas coverage grows."
-      }
-    ];
-
-    function answerFromLocal(query) {
-      for (const pair of qaPairs) {
-        if (pair.q.test(query)) return pair.a;
-      }
-      return (
-        "In short: Pathfinder × ATOM keeps Pathfinder as the place where work happens, and layers on an agentic AI " +
-        "co‑pilot that listens, thinks, and drafts alongside your advisors. The customer feels like they are " +
-        "in a working session that ends with a real answer, not the start of a new waiting period."
-      );
-    }
-
-    const assistantInput = document.getElementById('assistantInput');
-    const assistantSendBtn = document.getElementById('assistantSendBtn');
-    const assistantTranscript = document.getElementById('assistantTranscript');
-
-    function appendMessage(role, text) {
-      const div = document.createElement('div');
-      div.style.marginTop = '4px';
-      div.innerHTML = '<strong>' + role + ':</strong> ' + text.replace(/\n/g, '<br />');
-      assistantTranscript.appendChild(div);
-      assistantTranscript.scrollTop = assistantTranscript.scrollHeight;
-    }
-
-    assistantSendBtn.addEventListener('click', () => {
-      const q = assistantInput.value.trim();
-      if (!q) return;
-      appendMessage('You', q);
-      assistantInput.value = '';
-      setTimeout(() => {
-        const a = answerFromLocal(q);
-        appendMessage('ATOM', a);
-      }, 220);
-    });
-
-    assistantInput.addEventListener('keydown', (e) => {
-      if (e.key === 'Enter') assistantSendBtn.click();
-    });
-  </script>
+        // Close panel on outside click
+        document.addEventListener('click', function(e) {
+            const panel = document.getElementById('infoPanel');
+            if (!panel.contains(e.target) && !e.target.closest('.node') && !e.target.closest('.core-hub')) {
+                closeInfo();
+            }
+        });
+    </script>
 </body>
 </html>
